@@ -1,0 +1,6 @@
+framework module Pods_NIBM_Covid_19Tests {
+  umbrella header "Pods-NIBM Covid 19Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

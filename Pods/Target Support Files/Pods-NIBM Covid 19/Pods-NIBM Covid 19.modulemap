@@ -1,0 +1,6 @@
+framework module Pods_NIBM_Covid_19 {
+  umbrella header "Pods-NIBM Covid 19-umbrella.h"
+
+  export *
+  module * { export * }
+}
