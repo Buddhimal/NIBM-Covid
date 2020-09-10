@@ -22,6 +22,18 @@
 		27E0EFFF2507DF1C00F7C807 /* NIBM_Covid_19Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0EFFE2507DF1C00F7C807 /* NIBM_Covid_19Tests.swift */; };
 		27E0F00A2507DF1C00F7C807 /* NIBM_Covid_19UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0F0092507DF1C00F7C807 /* NIBM_Covid_19UITests.swift */; };
 		27E0F0182507E37500F7C807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27E0F0172507E37500F7C807 /* GoogleService-Info.plist */; };
+		27EE7FF7250A8BCD00446905 /* SurveySecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FF2250A8BCB00446905 /* SurveySecondViewController.swift */; };
+		27EE7FF8250A8BCD00446905 /* SurveyThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FF3250A8BCC00446905 /* SurveyThirdViewController.swift */; };
+		27EE7FF9250A8BCD00446905 /* SurveyFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FF4250A8BCC00446905 /* SurveyFirstViewController.swift */; };
+		27EE7FFA250A8BCD00446905 /* SurveyFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FF5250A8BCD00446905 /* SurveyFourthViewController.swift */; };
+		27EE7FFB250A8BCD00446905 /* SurveyFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FF6250A8BCD00446905 /* SurveyFifthViewController.swift */; };
+		27EE8001250A8BFA00446905 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FFD250A8BF800446905 /* SettingsViewController.swift */; };
+		27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FFE250A8BF900446905 /* ProfileViewController.swift */; };
+		27EE8003250A8BFA00446905 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FFF250A8BF900446905 /* AboutUsViewController.swift */; };
+		27EE8004250A8BFA00446905 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8000250A8BF900446905 /* ShareViewController.swift */; };
+		27EE8009250A8C2000446905 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8006250A8C1F00446905 /* HomeViewController.swift */; };
+		27EE800A250A8C2000446905 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8007250A8C1F00446905 /* TabBarViewController.swift */; };
+		27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8008250A8C2000446905 /* TestHomeViewController.swift */; };
 		3CE80EE0C66FC8652C0FB5D4 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA7D375B5C0B549F288FB94 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework */; };
 		5045EC9FE8811BFBF87B0A6A /* Pods_NIBM_Covid_19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +78,18 @@
 		27E0F0092507DF1C00F7C807 /* NIBM_Covid_19UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIBM_Covid_19UITests.swift; sourceTree = "<group>"; };
 		27E0F00B2507DF1C00F7C807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27E0F0172507E37500F7C807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		27EE7FF2250A8BCB00446905 /* SurveySecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveySecondViewController.swift; sourceTree = "<group>"; };
+		27EE7FF3250A8BCC00446905 /* SurveyThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyThirdViewController.swift; sourceTree = "<group>"; };
+		27EE7FF4250A8BCC00446905 /* SurveyFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFirstViewController.swift; sourceTree = "<group>"; };
+		27EE7FF5250A8BCD00446905 /* SurveyFourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFourthViewController.swift; sourceTree = "<group>"; };
+		27EE7FF6250A8BCD00446905 /* SurveyFifthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFifthViewController.swift; sourceTree = "<group>"; };
+		27EE7FFD250A8BF800446905 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		27EE7FFE250A8BF900446905 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		27EE7FFF250A8BF900446905 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		27EE8000250A8BF900446905 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		27EE8006250A8C1F00446905 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		27EE8007250A8C1F00446905 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		27EE8008250A8C2000446905 /* TestHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHomeViewController.swift; sourceTree = "<group>"; };
 		2DA7D375B5C0B549F288FB94 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A79E1A5B896914887843BDD /* Pods-NIBM Covid 19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5065529AA932BB5539248FC5 /* Pods-NIBM Covid 19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19/Pods-NIBM Covid 19.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +139,9 @@
 		27313CE5250800E4001BBE2A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				27EE8005250A8C0500446905 /* Home */,
+				27EE7FFC250A8BDA00446905 /* Settings */,
+				27EE7FF1250A8B9800446905 /* Survey */,
 				27313CEB250805D1001BBE2A /* Auth */,
 			);
 			path = Controllers;
@@ -193,6 +220,39 @@
 				27E0F00B2507DF1C00F7C807 /* Info.plist */,
 			);
 			path = "NIBM Covid 19UITests";
+			sourceTree = "<group>";
+		};
+		27EE7FF1250A8B9800446905 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				27EE7FF6250A8BCD00446905 /* SurveyFifthViewController.swift */,
+				27EE7FF4250A8BCC00446905 /* SurveyFirstViewController.swift */,
+				27EE7FF5250A8BCD00446905 /* SurveyFourthViewController.swift */,
+				27EE7FF2250A8BCB00446905 /* SurveySecondViewController.swift */,
+				27EE7FF3250A8BCC00446905 /* SurveyThirdViewController.swift */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
+		27EE7FFC250A8BDA00446905 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				27EE7FFF250A8BF900446905 /* AboutUsViewController.swift */,
+				27EE7FFE250A8BF900446905 /* ProfileViewController.swift */,
+				27EE7FFD250A8BF800446905 /* SettingsViewController.swift */,
+				27EE8000250A8BF900446905 /* ShareViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		27EE8005250A8C0500446905 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				27EE8006250A8C1F00446905 /* HomeViewController.swift */,
+				27EE8007250A8C1F00446905 /* TabBarViewController.swift */,
+				27EE8008250A8C2000446905 /* TestHomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A889EDC9170B530C941A4A84 /* Pods */ = {
@@ -458,14 +518,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EE7FFA250A8BCD00446905 /* SurveyFourthViewController.swift in Sources */,
+				27EE7FF8250A8BCD00446905 /* SurveyThirdViewController.swift in Sources */,
 				27313CF0250805E9001BBE2A /* MainViewController.swift in Sources */,
 				27313CEF250805E9001BBE2A /* LoginViewController.swift in Sources */,
 				27313CF1250805E9001BBE2A /* SignUpViewController.swift in Sources */,
+				27EE8009250A8C2000446905 /* HomeViewController.swift in Sources */,
 				27313CE3250800C9001BBE2A /* AuthButtonUIButton.swift in Sources */,
 				27E0EFEC2507DF1800F7C807 /* ViewController.swift in Sources */,
+				27EE7FFB250A8BCD00446905 /* SurveyFifthViewController.swift in Sources */,
+				27EE8003250A8BFA00446905 /* AboutUsViewController.swift in Sources */,
+				27EE7FF7250A8BCD00446905 /* SurveySecondViewController.swift in Sources */,
+				27EE8001250A8BFA00446905 /* SettingsViewController.swift in Sources */,
 				27313CE4250800C9001BBE2A /* SettingsTableViewCell.swift in Sources */,
+				27EE800A250A8C2000446905 /* TabBarViewController.swift in Sources */,
+				27EE7FF9250A8BCD00446905 /* SurveyFirstViewController.swift in Sources */,
+				27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */,
 				27313CEA25080325001BBE2A /* extension.swift in Sources */,
 				27E0EFE82507DF1800F7C807 /* AppDelegate.swift in Sources */,
+				27EE8004250A8BFA00446905 /* ShareViewController.swift in Sources */,
+				27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

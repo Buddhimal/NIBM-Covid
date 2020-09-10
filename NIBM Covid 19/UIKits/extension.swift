@@ -88,7 +88,7 @@ extension UITextField {
         let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
-        tf.textColor = .white
+        tf.textColor = .black
         tf.keyboardAppearance = .dark
         tf.isSecureTextEntry = isSecureTextEntry
         tf.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -104,4 +104,30 @@ extension UIColor {
     
     static let backgroundColor = rgb(red: 255, green: 255, blue: 255)
     static let mainBlueTint = rgb(red: 17, green: 154, blue: 237)
+    static let indigo = rgb(red: 75, green: 0, blue: 130)
+}
+
+
+extension UIButton {
+
+func alignImageAndTitleVertically(padding: CGFloat = 5.0) {
+    self.sizeToFit()
+    let imageSize = self.imageView!.frame.size
+    let titleSize = self.titleLabel!.frame.size
+    let totalHeight = imageSize.height + titleSize.height + padding
+
+    self.imageEdgeInsets = UIEdgeInsets(
+        top: -(totalHeight - imageSize.height),
+        left: 0,
+        bottom: 0,
+        right: -titleSize.width - 10
+    )
+
+    self.titleEdgeInsets = UIEdgeInsets(
+        top: 0,
+        left: 0,
+        bottom: -(totalHeight - titleSize.height),
+        right: titleSize.height
+    )
+}
 }
