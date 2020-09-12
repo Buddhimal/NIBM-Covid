@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+
 
 class UpdateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Update"
-//        view.backgroundColor = UIColor(red: 164, green: 164, blue: 164, alpha: 1)
         view.backgroundColor = UIColor.backgroundColor
         configureUI()
-        
+        setTempreture()
     }
     
     private let createTextView: UILabel = {
@@ -84,7 +87,7 @@ class UpdateViewController: UIViewController {
     
     private let tempratureTextview: UITextView = {
         let textView = UITextView()
-        let attributedText = NSMutableAttributedString(string:  "96.5", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
+        let attributedText = NSMutableAttributedString(string:  "0.0", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
         
         textView.attributedText = attributedText
         textView.textAlignment = .center
@@ -122,7 +125,103 @@ class UpdateViewController: UIViewController {
     }()
     
     
+    private let tempratureTextField: UITextField = {
+        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
+    }()
     
+    private let updateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("U P D A T E", for: .normal)
+        button.setTitleColor(UIColor.mainBlueTint, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(updateTemp), for: .touchUpInside)
+        
+        
+        return button
+    }()
+    
+    @objc private func updateTemp(){
+        
+        showUniversalLoadingView(true, loadingText: "Saving Data..")
+        guard let temp = tempratureTextField.text else { return }
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        if (Double(temp) == nil){
+            let uialert = UIAlertController(title: "Error", message: "Please enter a valied temprature" , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+        } else {
+            
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy HH:mm"
+
+            
+            let values = [
+                "bodyTemperature": temp,
+                "bodyTemperatureUpdated": formatter.string(from: date),
+                ] as [String : Any]
+
+            
+            Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
+                if let error = error {
+                    let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+                    uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(uialert, animated: true, completion: nil)
+                    return
+                } else{
+                    self.setTempreture()
+                    self.tempratureTextField.text = nil
+                    showUniversalLoadingView(false, loadingText: "")
+                }
+            }
+        }
+    }
+    
+    private func setTempreture(){
+        showUniversalLoadingView(true, loadingText: "Fetching Data..")
+        let userID = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user body temparature value
+            let value = snapshot.value as? NSDictionary
+            let temparature = value?["bodyTemperature"] as? String ?? ""
+            let temparatureUpdated = value?["bodyTemperatureUpdated"] as? String ?? ""
+            self.tempratureTextview.text = temparature
+            showUniversalLoadingView(false, loadingText: "")
+            
+            let date = Date()
+            let formatter = DateFormatter()
+            let calendar = Calendar.current
+            // specify the format,
+            formatter.dateFormat = "dd-MM-yyyy HH:mm"
+            
+            let updatedAt = formatter.date(from: temparatureUpdated)
+            let today = formatter.date(from: formatter.string(from: date))
+            
+            let diff = calendar.dateComponents([.minute,.hour,.day], from: updatedAt!, to: today!)
+            
+            var msg = "Last Updated: 0 Day ago"
+            
+            if(diff.day! > 0){
+                msg = "Last Update: " + "\(diff.day!)" + " Day ago"
+            } else if(diff.hour! > 0){
+                msg = "Last Update: " + "\(diff.hour!)" + " Hour ago"
+            } else{
+                msg = "Last Update: " + "\(diff.minute!)" + " Minutes ago"
+            }
+            
+            self.lastUpdateLabel.text =  msg
+            
+
+        }) { (error) in
+            showUniversalLoadingView(false, loadingText: "")
+            let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+            return
+        }
+    }
     
     private func configureUI(){
         
@@ -161,8 +260,9 @@ class UpdateViewController: UIViewController {
         updateView.addSubview(tempratureTextview)
         updateView.addSubview(degreeLabel)
         updateView.addSubview(lastUpdateLabel)
-        
-        
+        updateView.addSubview(tempratureTextField)
+        tempratureTextField.translatesAutoresizingMaskIntoConstraints = false
+        updateView.addSubview(updateButton)
         
         NSLayoutConstraint.activate([
             createView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -202,8 +302,6 @@ class UpdateViewController: UIViewController {
             newSurveyNextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -35 ),
             newSurveyNextButton.centerYAnchor.constraint(equalTo: newSurveyView.centerYAnchor),
             
-            
-            
             updateView.topAnchor.constraint(equalTo:newSurveyView.bottomAnchor, constant: 30),
             updateView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             updateView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
@@ -216,11 +314,14 @@ class UpdateViewController: UIViewController {
             lastUpdateLabel.topAnchor.constraint(equalTo: tempratureTextview.bottomAnchor),
             lastUpdateLabel.centerXAnchor.constraint(equalTo: updateView.centerXAnchor),
             
+            tempratureTextField.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 60),
+            tempratureTextField.centerXAnchor.constraint(equalTo: updateView.centerXAnchor),
+            
+            updateButton.topAnchor.constraint(equalTo: tempratureTextField.bottomAnchor, constant: 50),
+            updateButton.centerXAnchor.constraint(equalTo: updateView.centerXAnchor),
             
         ])
         
-        
     }
-    
     
 }

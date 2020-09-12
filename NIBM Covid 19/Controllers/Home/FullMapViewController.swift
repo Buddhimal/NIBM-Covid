@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  FullMapViewController.swift
 //  NIBM Covid19
 //
 //  Created by Buddhimal Gunasekara on 9/10/20.
