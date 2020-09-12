@@ -50,6 +50,10 @@ class HomeViewController: UIViewController {
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.alignImageAndTitleVertically()
+        
+        button.addTarget(self, action: #selector(clickUpdateButton), for: .touchUpInside)
+
+        
         return button
     }()
     
@@ -452,6 +456,12 @@ class HomeViewController: UIViewController {
     
     @objc private func clickSettingsButton() {
         let rootVC = SettingsViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    
+    @objc private func clickUpdateButton() {
+        let rootVC = UpdateViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
 
