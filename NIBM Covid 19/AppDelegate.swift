@@ -23,9 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
             window?.rootViewController = UINavigationController(rootViewController: SurveyFirstViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-    //        window?.rootViewController = UINavigationController(rootViewController: SettingsViewController())
+//            window?.rootViewController = UINavigationController(rootViewController: SettingsViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: ViewController())
+            window?.rootViewController = UINavigationController(rootViewController: MapViewController())
+
             
             return true
         }

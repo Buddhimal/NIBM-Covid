@@ -36,6 +36,7 @@
 		27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8008250A8C2000446905 /* TestHomeViewController.swift */; };
 		3CE80EE0C66FC8652C0FB5D4 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA7D375B5C0B549F288FB94 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework */; };
 		5045EC9FE8811BFBF87B0A6A /* Pods_NIBM_Covid_19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */; };
+		925F2AEA250BE49600C0DE41 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AE9250BE49600C0DE41 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		4A79E1A5B896914887843BDD /* Pods-NIBM Covid 19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5065529AA932BB5539248FC5 /* Pods-NIBM Covid 19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19/Pods-NIBM Covid 19.release.xcconfig"; sourceTree = "<group>"; };
 		5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		925F2AE9250BE49600C0DE41 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AEED8566BCB36095A2C5C12D /* Pods_NIBM_Covid_19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D5BE4E337D46788CC45B8 /* Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19-NIBM Covid 19UITests/Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53F7052F8CA6228FEB9E185 /* Pods-NIBM Covid 19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				27EE8006250A8C1F00446905 /* HomeViewController.swift */,
 				27EE8007250A8C1F00446905 /* TabBarViewController.swift */,
 				27EE8008250A8C2000446905 /* TestHomeViewController.swift */,
+				925F2AE9250BE49600C0DE41 /* MapViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				27EE7FF7250A8BCD00446905 /* SurveySecondViewController.swift in Sources */,
 				27EE8001250A8BFA00446905 /* SettingsViewController.swift in Sources */,
 				27313CE4250800C9001BBE2A /* SettingsTableViewCell.swift in Sources */,
+				925F2AEA250BE49600C0DE41 /* MapViewController.swift in Sources */,
 				27EE800A250A8C2000446905 /* TabBarViewController.swift in Sources */,
 				27EE7FF9250A8BCD00446905 /* SurveyFirstViewController.swift in Sources */,
 				27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */,

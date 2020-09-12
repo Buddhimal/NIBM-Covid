@@ -242,14 +242,6 @@ class HomeViewController: UIViewController {
         uiLabel.attributedText = attributedText
         return uiLabel
     }()
-
-
-
-
-
-
-
-
     
     
     

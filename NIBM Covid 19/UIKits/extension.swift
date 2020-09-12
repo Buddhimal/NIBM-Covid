@@ -51,8 +51,25 @@ extension UIView {
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    func centerY(inView view: UIView) {
-        centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    func centerY(inView view: UIView, leftAnchor: NSLayoutXAxisAnchor? = nil, paddingLeft: CGFloat = 0, constant: CGFloat = 0) {
+        centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
+        translatesAutoresizingMaskIntoConstraints = false
+        if let left = leftAnchor {
+            anchor(left: left, paddingLeft: paddingLeft)
+        }
+    }
+    
+    func setDimensions(height: CGFloat, width: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+    
+    func addShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.55
+        layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        layer.masksToBounds = false
     }
 }
 
@@ -109,25 +126,28 @@ extension UIColor {
 
 
 extension UIButton {
-
-func alignImageAndTitleVertically(padding: CGFloat = 5.0) {
-    self.sizeToFit()
-    let imageSize = self.imageView!.frame.size
-    let titleSize = self.titleLabel!.frame.size
-    let totalHeight = imageSize.height + titleSize.height + padding
-
-    self.imageEdgeInsets = UIEdgeInsets(
-        top: -(totalHeight - imageSize.height),
-        left: 0,
-        bottom: 0,
-        right: -titleSize.width - 10
-    )
-
-    self.titleEdgeInsets = UIEdgeInsets(
-        top: 0,
-        left: 0,
-        bottom: -(totalHeight - titleSize.height),
-        right: titleSize.height
-    )
+    
+    func alignImageAndTitleVertically(padding: CGFloat = 5.0) {
+        self.sizeToFit()
+        let imageSize = self.imageView!.frame.size
+        let titleSize = self.titleLabel!.frame.size
+        let totalHeight = imageSize.height + titleSize.height + padding
+        
+        self.imageEdgeInsets = UIEdgeInsets(
+            top: -(totalHeight - imageSize.height),
+            left: 0,
+            bottom: 0,
+            right: -titleSize.width - 10
+        )
+        
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: -(totalHeight - titleSize.height),
+            right: titleSize.height
+        )
+    }
+    
+    
 }
-}
+

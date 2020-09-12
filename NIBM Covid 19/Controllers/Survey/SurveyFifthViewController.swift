@@ -112,8 +112,24 @@ class SurveyFifthViewController: UIViewController {
     // MARK: - Functions
         
         func handleSurveyAction() {
-            let vc = SurveyFirstViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//            let vc = SurveyFirstViewController()
+//            let vc = HomeViewController()
+
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            self.present(vc, animated: true, completion: nil)
+//            vc.modalPresentationStyle = .fullScreen
+//            self.dismiss(animated: true, completion: nil)
+            
+            let nav = UINavigationController(rootViewController: HomeViewController())
+            
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+            
+            let rootVC = SettingsViewController()
+            navigationController?.pushViewController(rootVC, animated: true)
+            
+
+            
         }
         
         
