@@ -2,7 +2,7 @@
 //  Loader.swift
 //  NIBM COVID19
 //
-//  Created by chamod Nimsara on 9/6/20.
+//  Created by Buddhimal Gunasekara on 9/13/20.
 //  Copyright © 2020 NIBM. All rights reserved.
 //
 import UIKit
