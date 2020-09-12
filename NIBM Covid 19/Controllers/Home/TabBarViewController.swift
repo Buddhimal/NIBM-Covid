@@ -26,7 +26,7 @@ class TabBarViewController: UIViewController {
         tabBarCnt = UITabBarController()
         tabBarCnt.tabBar.barStyle = UIBarStyle.black
     
-        let firstViewController = HomeViewController()
+        let firstViewController = MapViewController()
 //        firstViewController.title = "Home"
 //        firstViewController.view.backgroundColor = .red
         

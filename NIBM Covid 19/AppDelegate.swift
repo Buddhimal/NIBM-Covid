@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
      var window: UIWindow?
+    
+    
 
 
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,10 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window = UIWindow()
             FirebaseApp.configure()
             window?.makeKeyAndVisible()
+            
+//            do{
+//                try Auth.auth().signOut()
+//            } catch{
+//                print("Sign out Error")
+//            }
+
+            
+            
 //            window?.rootViewController = UINavigationController(rootViewController: SurveyFirstViewController())
-//            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+//            window?.rootViewController = UINavigationController(rootViewController: SignUpViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: SettingsViewController())
             window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+//              window?.rootViewController = UINavigationController(rootViewController: FullMapViewController())
+
 //            window?.rootViewController = UINavigationController(rootViewController: ViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: UpdateViewController())
 

@@ -9,8 +9,12 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import GeoFire
 
 class SignUpViewController: UIViewController {
+    
+    private var location = LocationHandler.shared.locationManager.location
+    
     
     // MARK: - Properties
     private let titleLabel: UILabel = {
@@ -48,7 +52,7 @@ class SignUpViewController: UIViewController {
         
         return sc
     }()
-
+    
     
     private lazy var passwordContainerView: UIView = {
         let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextFiled)
@@ -131,7 +135,7 @@ class SignUpViewController: UIViewController {
     
     func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = true
-//        navigationController?.navigationBar.barStyle = .black
+        //        navigationController?.navigationBar.barStyle = .black
     }
     
     
@@ -144,7 +148,26 @@ class SignUpViewController: UIViewController {
         guard let firstName = firstNameTextFiled.text else { return }
         guard let lastName = lastNameTextFiled.text else { return }
         let role = accountTypeSegmentedControl.selectedSegmentIndex
-
+        
+        func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
+            REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+                
+                //handle error
+                
+                let keyWindow = UIApplication.shared.connectedScenes
+                    .filter({$0.activationState == .foregroundActive})
+                    .map({$0 as? UIWindowScene})
+                    .compactMap({$0})
+                    .first?.windows
+                    .filter({$0.isKeyWindow}).first
+                
+                guard let controller = keyWindow?.rootViewController as? FullMapViewController else { return }
+                controller.configure()
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
         
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
@@ -162,43 +185,74 @@ class SignUpViewController: UIViewController {
                 "role": role
                 ] as [String : Any]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
-                print("Successfuly Registerd and save data..")
-            }
+            //            if accountType == 1 {
+            let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+            
+            guard let location = self.location else { return }
+            
+            geoFire.setLocation(location, forKey: uid, withCompletionBlock: { (error) in
+                self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+            })
+            //            }
+            
+            self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+            
+            //            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
+            //                print("Successfuly Registerd and save data..")
+            //            }
         }
-                
+        
     }
-        
-        
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            // Do any additional setup after loading the view.
-            configureUI()
+    
+    func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
+        REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+            
+            //handle error
+            
+            let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+            
+            guard let controller = keyWindow?.rootViewController as? FullMapViewController else { return }
+            controller.configure()
+            
+            self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        configureUI()
+    }
+    
+    func configureUI(){
         
-        func configureUI(){
-            
-            configureNavigationBar();
-            
-            view.backgroundColor = UIColor.backgroundColor
-            
-            view.addSubview(titleLabel)
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-            
-            let stack = UIStackView(arrangedSubviews: [ firstNameContainerView,lastNameContainerView,emailContainerView, passwordContainerView,accountTypeSegmentedControl,signUpButton,termsAndConditionsButton,alreadyHaveAccountButton
-                
-            ])
-            stack.axis = .vertical
-            stack.distribution = .fillProportionally
-            stack.spacing = 24
-            
-            view.addSubview(stack)
-            stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
-            
-        }
+        configureNavigationBar();
         
+        view.backgroundColor = UIColor.backgroundColor
+        
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        
+        let stack = UIStackView(arrangedSubviews: [ firstNameContainerView,lastNameContainerView,emailContainerView, passwordContainerView,accountTypeSegmentedControl,signUpButton,termsAndConditionsButton,alreadyHaveAccountButton
+            
+        ])
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        stack.spacing = 24
+        
+        view.addSubview(stack)
+        stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        
+    }
+    
 }
 

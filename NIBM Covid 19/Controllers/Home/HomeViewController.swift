@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  DashboardViewController.swift
 //  NIBM Covid19
 //
 //  Created by Buddhimal Gunasekara on 8/30/20.
@@ -8,8 +8,16 @@
 
 import UIKit
 import FirebaseAuth
+import MapKit
+
+private let reuseIdentifier = "LocationCell"
+private let annotationIdentifier = "DriverAnnotation"
 
 class HomeViewController: UIViewController {
+    
+    private let locationManager = LocationHandler.shared.locationManager
+    private let mapView = MKMapView()
+    
     
     // MARK: - Lifecycle
     
@@ -19,14 +27,16 @@ class HomeViewController: UIViewController {
         title = "Home"
         
         
-//        configureNavigationBar()
-        setStayHomeControl()
-        setBottomButtonControl()
+        //        configureNavigationBar()
+        configureUI()
+        fetchUsers()
+//        setBottomButtonControl()
         
-//        signout()
-//        checkUserLoggedIn()
+        //        signout()
+        //        checkUserLoggedIn()
         
     }
+    
     
     //   MARK: UI Components
     
@@ -44,7 +54,7 @@ class HomeViewController: UIViewController {
     
     private let updateButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Profile", for: .normal)
+        button.setTitle("Update", for: .normal)
         button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
@@ -52,7 +62,7 @@ class HomeViewController: UIViewController {
         button.alignImageAndTitleVertically()
         
         button.addTarget(self, action: #selector(clickUpdateButton), for: .touchUpInside)
-
+        
         
         return button
     }()
@@ -86,8 +96,8 @@ class HomeViewController: UIViewController {
         let ImageText = UILabel()
         ImageText.translatesAutoresizingMaskIntoConstraints = false
         ImageText.numberOfLines = 3
-        let attributedText = NSMutableAttributedString(string:  "All you need is", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
-        attributedText.append(NSMutableAttributedString(string: "\nstay at home", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24), NSAttributedString.Key.foregroundColor: UIColor.black ]))
+        let attributedText = NSMutableAttributedString(string:  "All you need is", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)])
+        attributedText.append(NSMutableAttributedString(string: "\nStay at home", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black ]))
         
         ImageText.attributedText = attributedText
         return ImageText
@@ -129,9 +139,12 @@ class HomeViewController: UIViewController {
         ImageText.translatesAutoresizingMaskIntoConstraints = false
         ImageText.numberOfLines = 3
         let attributedText = NSMutableAttributedString(string:  "NIBM is closed until further notice", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
-        attributedText.append(NSMutableAttributedString(string: "\nstay at home", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black ]))
-        
+        attributedText.append(NSMutableAttributedString(string: "\nGet quick update about lecture schedule", attributes:
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
+        attributedText.append(NSMutableAttributedString(string: "\nStaytune with us", attributes:
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
         ImageText.attributedText = attributedText
+        
         return ImageText
     }()
     
@@ -140,7 +153,7 @@ class HomeViewController: UIViewController {
         let ImageText = UILabel()
         ImageText.translatesAutoresizingMaskIntoConstraints = false
         ImageText.numberOfLines = 3
-//        ImageText.backgroundColor = .gray
+        //        ImageText.backgroundColor = .gray
         let attributedText = NSMutableAttributedString(string:  "Univercity Case Updates", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
         ImageText.attributedText = attributedText
         return ImageText
@@ -149,8 +162,13 @@ class HomeViewController: UIViewController {
     private let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+//        button.setTitle("hello", for: .normal)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(clickNoticeButton), for: .touchUpInside)
+
+        
         return button
     }()
     
@@ -195,7 +213,7 @@ class HomeViewController: UIViewController {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return textView
     }()
     
@@ -207,7 +225,7 @@ class HomeViewController: UIViewController {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return textView
     }()
     
@@ -219,7 +237,7 @@ class HomeViewController: UIViewController {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return textView
     }()
     
@@ -260,7 +278,7 @@ class HomeViewController: UIViewController {
     
     //    MARK: Controls
     
-    private func setStayHomeControl(){
+    private func configureUI(){
         let stayHomeImageContainerView = UIView()
         stayHomeImageContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stayHomeImageContainerView)
@@ -273,19 +291,19 @@ class HomeViewController: UIViewController {
         
         stayHomeTextContainerView.addSubview(stayHomeTextView)
         stayHomeTextContainerView.addSubview(btnSafeAction)
-                
+        
         
         let bellIconStackView = UIView()
         bellIconStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bellIconStackView)
-
+        
         bellIconStackView.addSubview(notificationImageView)
         bellIconStackView.addSubview(bellIconTextView)
         bellIconStackView.addSubview(nextButton)
         
         let caseUpdateStackView = UIView()
         caseUpdateStackView.translatesAutoresizingMaskIntoConstraints = false
-//        caseUpdateStackView.backgroundColor = .gray
+        //        caseUpdateStackView.backgroundColor = .gray
         view.addSubview(caseUpdateStackView)
         
         caseUpdateStackView.addSubview(caseUpdateTextView)
@@ -295,7 +313,7 @@ class HomeViewController: UIViewController {
         //corona case count down
         let infectedStackView = UIView()
         infectedStackView.translatesAutoresizingMaskIntoConstraints = false
-//        infectedStackView.backgroundColor = .gray
+        //        infectedStackView.backgroundColor = .gray
         view.addSubview(infectedStackView)
         infectedStackView.addSubview(infectedImageView)
         infectedStackView.addSubview(infectedTextview)
@@ -309,17 +327,13 @@ class HomeViewController: UIViewController {
         deathsStackView.addSubview(deathsTextview)
         deathsStackView.addSubview(deathsLabel)
         
-
+        
         let recoveredStackView = UIView()
         recoveredStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(recoveredStackView)
         recoveredStackView.addSubview(recoveredImageView)
         recoveredStackView.addSubview(recoveredTextview)
         recoveredStackView.addSubview(recoveredLabel)
-
-        
-
-        
         
         NSLayoutConstraint.activate([
             stayHomeImageContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -328,17 +342,16 @@ class HomeViewController: UIViewController {
             stayHomeImageContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
             
             stayhomeImageView.centerYAnchor.constraint(equalTo: stayHomeImageContainerView.centerYAnchor),
-//            stayhomeImageView.centerXAnchor.constraint(equalTo: stayHomeImageContainerView.centerXAnchor),
             stayhomeImageView.heightAnchor.constraint(equalTo: stayHomeImageContainerView.heightAnchor, multiplier: 0.8),
             stayhomeImageView.widthAnchor.constraint(equalTo: stayHomeImageContainerView.widthAnchor, multiplier: 0.8, constant: -10),
-
+            
             stayHomeTextContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             stayHomeTextContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -5),
             stayHomeTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5),
             stayHomeTextContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
-
+            
             btnSafeAction.topAnchor.constraint(equalTo: stayHomeTextView.bottomAnchor, constant: 5),
-            stayHomeTextView.centerYAnchor.constraint(equalTo: stayhomeImageView.centerYAnchor),
+            stayHomeTextView.centerYAnchor.constraint(equalTo: stayhomeImageView.centerYAnchor,constant: -15),
             
             
             bellIconStackView.topAnchor.constraint(equalTo: stayHomeImageContainerView.bottomAnchor),
@@ -346,7 +359,7 @@ class HomeViewController: UIViewController {
             bellIconStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bellIconStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
             bellIconStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.2),
-
+            
             
             notificationImageView.centerYAnchor.constraint(equalTo: bellIconStackView.centerYAnchor),
             notificationImageView.centerXAnchor.constraint(equalTo: bellIconStackView.centerXAnchor),
@@ -355,8 +368,8 @@ class HomeViewController: UIViewController {
             
             bellIconTextView.leadingAnchor.constraint(equalTo: notificationImageView.trailingAnchor, constant: 15 ),
             bellIconTextView.centerYAnchor.constraint(equalTo: notificationImageView.centerYAnchor),
-
-            nextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -35 ),
+            
+            nextButton.leadingAnchor.constraint(equalTo: bellIconTextView.trailingAnchor, constant: 15 ),
             nextButton.centerYAnchor.constraint(equalTo: notificationImageView.centerYAnchor),
             
             
@@ -364,13 +377,12 @@ class HomeViewController: UIViewController {
             caseUpdateStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             caseUpdateStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             caseUpdateStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.05),
-//            caseUpdateStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: 20),
+            //            caseUpdateStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: 20),
             
             seeMoreButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25 ),
             seeMoreButton.centerYAnchor.constraint(equalTo: caseUpdateStackView.centerYAnchor),
             caseUpdateTextView.centerYAnchor.constraint(equalTo: caseUpdateStackView.centerYAnchor),
-
-
+            
         ])
         
         
@@ -380,6 +392,7 @@ class HomeViewController: UIViewController {
         let coundDownControlStackView = UIStackView(arrangedSubviews: [infectedStackView,deathsStackView,recoveredStackView])
         coundDownControlStackView.translatesAutoresizingMaskIntoConstraints = false
         coundDownControlStackView.distribution = .fillEqually
+        //        coundDownControlStackView.backgroundColor = .orange
         
         
         view.addSubview(coundDownControlStackView)
@@ -390,7 +403,7 @@ class HomeViewController: UIViewController {
             coundDownControlStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             coundDownControlStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             coundDownControlStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-
+            
             //infected
             infectedImageView.topAnchor.constraint(equalTo: caseUpdateStackView.topAnchor, constant: 40),
             infectedImageView.leadingAnchor.constraint(equalTo: caseUpdateStackView.leadingAnchor),
@@ -411,10 +424,9 @@ class HomeViewController: UIViewController {
             
             deathsTextview.topAnchor.constraint(equalTo: deathsImageView.bottomAnchor, constant: 0),
             deathsTextview.centerXAnchor.constraint(equalTo: deathsStackView.centerXAnchor),
-
+            
             deathsLabel.topAnchor.constraint(equalTo: deathsTextview.bottomAnchor, constant: 0),
             deathsLabel.centerXAnchor.constraint(equalTo: deathsStackView.centerXAnchor),
-
             
             //recovered
             recoveredImageView.topAnchor.constraint(equalTo: caseUpdateStackView.topAnchor, constant: 40),
@@ -424,33 +436,106 @@ class HomeViewController: UIViewController {
             
             recoveredTextview.topAnchor.constraint(equalTo: recoveredImageView.bottomAnchor, constant: 0),
             recoveredTextview.centerXAnchor.constraint(equalTo: recoveredStackView.centerXAnchor),
-
+            
             recoveredLabel.topAnchor.constraint(equalTo: recoveredTextview.bottomAnchor, constant: 0),
             recoveredLabel.centerXAnchor.constraint(equalTo: recoveredStackView.centerXAnchor),
+            
         ])
-
-
-    }
-        
-    
-    private func setBottomButtonControl(){
         
         let bottomControlStackView = UIStackView(arrangedSubviews: [homeButton,updateButton,settingsButton])
         bottomControlStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomControlStackView.distribution = .fillEqually
-        //        bottomControlStackView.axis = .vertical
         
         view.addSubview(bottomControlStackView)
+        
         
         NSLayoutConstraint.activate([
             bottomControlStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomControlStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             bottomControlStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bottomControlStackView.heightAnchor.constraint(equalToConstant: 50)
+            bottomControlStackView.heightAnchor.constraint(equalToConstant: 50),
+        ])
+        
+        let mapStackView = UIView()
+        mapStackView.translatesAutoresizingMaskIntoConstraints = false
+//        mapStackView.backgroundColor = .gray
+        view.addSubview(mapStackView)
+        
+        mapStackView.addSubview(mapView)
+        mapView.frame = view.frame
+//
+        mapView.showsUserLocation = true
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.userTrackingMode = .follow
+        
+//        var region: MKCoordinateRegion = self.mapView.region
+//        var span: MKCoordinateSpan = mapView.region.span
+//        span.latitudeDelta *= 0.9
+//        span.longitudeDelta *= 0.9
+//        region.span = span
+//        mapView.setRegion(region, animated: true)
+
+        
+//        mapView.region
+//        let regionRadius: CLLocationDistance = 1000
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius * 2.0, regionRadius * 2.0)
+//        mapView.setRegion(coordinateRegion, animated: true)
+
+
+        
+
+        NSLayoutConstraint.activate([
+            
+            mapStackView.topAnchor.constraint(equalTo: coundDownControlStackView.bottomAnchor, constant: 15),
+            mapStackView.bottomAnchor.constraint(equalTo: bottomControlStackView.topAnchor, constant: -10),
+            mapStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            mapStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            mapStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.4),
+            
+            mapView.topAnchor.constraint(equalTo: mapStackView.topAnchor, constant: 15),
+            mapView.bottomAnchor.constraint(equalTo: mapStackView.bottomAnchor, constant: -10),
+            mapView.trailingAnchor.constraint(equalTo: mapStackView.trailingAnchor),
+            mapView.leadingAnchor.constraint(equalTo: mapStackView.leadingAnchor),
+//            mapView.bottomAnchor.constraint(equalTo: bottomControlStackView.topAnchor, constant: -10),
             
         ])
+        
     }
     
+//    func zoomMap(byFactor delta: Double) {
+//        var region: MKCoordinateRegion = self.mapView.region
+//        var span: MKCoordinateSpan = mapView.region.span
+//        span.latitudeDelta *= delta
+//        span.longitudeDelta *= delta
+//        region.span = span
+//        mapView.setRegion(region, animated: true)
+//    }
+    
+    func fetchUsers() {
+        guard let location = locationManager?.location else { return }
+        Service.shared.fetchUsersLocation(location: location) { (user) in
+            guard let coordinate = user.location?.coordinate else { return }
+            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+            
+            var userIsVisible: Bool {
+                
+                return self.mapView.annotations.contains { (annotation) -> Bool in
+                    guard let userAnno = annotation as? UserAnnotation else { return false }
+                    
+                    if userAnno.uid == user.uid {
+                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                        return true
+                    }
+                    
+                    return false
+                }
+            }
+            
+            if !userIsVisible {
+                self.mapView.addAnnotation(annotation)
+            }
+        }
+    }
     
     //MARK: Functions
     
@@ -459,12 +544,18 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(rootVC, animated: true)
     }
     
+    @objc private func clickNoticeButton() {
+        let rootVC = SettingsViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    
     
     @objc private func clickUpdateButton() {
         let rootVC = UpdateViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
-
+    
     
     
     // MARK: API
@@ -489,4 +580,25 @@ class HomeViewController: UIViewController {
         }
     }
     
+}
+
+// MARK: - LocationServices
+extension HomeViewController {
+    
+    func  AccessLocationServices() {
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            locationManager?.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            break
+        case .authorizedWhenInUse:
+            locationManager?.requestAlwaysAuthorization()
+        case .authorizedAlways:
+            locationManager?.startUpdatingLocation()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        default:
+            break
+        }
+    }
 }

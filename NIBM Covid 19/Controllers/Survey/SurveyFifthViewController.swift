@@ -120,7 +120,7 @@ class SurveyFifthViewController: UIViewController {
 //            vc.modalPresentationStyle = .fullScreen
 //            self.dismiss(animated: true, completion: nil)
             
-            let nav = UINavigationController(rootViewController: HomeViewController())
+            let nav = UINavigationController(rootViewController: MapViewController())
             
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)

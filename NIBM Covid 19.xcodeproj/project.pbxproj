@@ -16,7 +16,6 @@
 		27313CF1250805E9001BBE2A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27313CEE250805E9001BBE2A /* SignUpViewController.swift */; };
 		27E0EFE82507DF1800F7C807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0EFE72507DF1800F7C807 /* AppDelegate.swift */; };
 		27E0EFEC2507DF1800F7C807 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0EFEB2507DF1800F7C807 /* ViewController.swift */; };
-		27E0EFEF2507DF1800F7C807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E0EFED2507DF1800F7C807 /* Main.storyboard */; };
 		27E0EFF12507DF1B00F7C807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E0EFF02507DF1B00F7C807 /* Assets.xcassets */; };
 		27E0EFF42507DF1B00F7C807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E0EFF22507DF1B00F7C807 /* LaunchScreen.storyboard */; };
 		27E0EFFF2507DF1C00F7C807 /* NIBM_Covid_19Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0EFFE2507DF1C00F7C807 /* NIBM_Covid_19Tests.swift */; };
@@ -31,13 +30,22 @@
 		27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FFE250A8BF900446905 /* ProfileViewController.swift */; };
 		27EE8003250A8BFA00446905 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE7FFF250A8BF900446905 /* AboutUsViewController.swift */; };
 		27EE8004250A8BFA00446905 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8000250A8BF900446905 /* ShareViewController.swift */; };
-		27EE8009250A8C2000446905 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8006250A8C1F00446905 /* HomeViewController.swift */; };
 		27EE800A250A8C2000446905 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8007250A8C1F00446905 /* TabBarViewController.swift */; };
 		27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE8008250A8C2000446905 /* TestHomeViewController.swift */; };
 		3CE80EE0C66FC8652C0FB5D4 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA7D375B5C0B549F288FB94 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework */; };
 		5045EC9FE8811BFBF87B0A6A /* Pods_NIBM_Covid_19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */; };
-		925F2AEA250BE49600C0DE41 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AE9250BE49600C0DE41 /* MapViewController.swift */; };
+		925F2AEA250BE49600C0DE41 /* NotUseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AE9250BE49600C0DE41 /* NotUseMapViewController.swift */; };
 		925F2AEE250C7C2600C0DE41 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */; };
+		92D947AA250CBAE600EAD672 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947A9250CBAE600EAD672 /* Service.swift */; };
+		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
+		92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */; };
+		92D947B9250CDE5300EAD672 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B8250CDE5300EAD672 /* LocationHandler.swift */; };
+		92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BA250CDE6A00EAD672 /* RideActionView.swift */; };
+		92D947BF250CDE7A00EAD672 /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BC250CDE7900EAD672 /* LocationInputView.swift */; };
+		92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */; };
+		92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */; };
+		92D947C4250CDF8500EAD672 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947C2250CDF8400EAD672 /* UserAnnotation.swift */; };
+		92D947C7250D45A300EAD672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947C6250D45A300EAD672 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +77,6 @@
 		27E0EFE42507DF1800F7C807 /* NIBM Covid 19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NIBM Covid 19.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E0EFE72507DF1800F7C807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27E0EFEB2507DF1800F7C807 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		27E0EFEE2507DF1800F7C807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27E0EFF02507DF1B00F7C807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27E0EFF32507DF1B00F7C807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27E0EFF52507DF1B00F7C807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,15 +96,24 @@
 		27EE7FFE250A8BF900446905 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		27EE7FFF250A8BF900446905 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		27EE8000250A8BF900446905 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		27EE8006250A8C1F00446905 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		27EE8007250A8C1F00446905 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		27EE8008250A8C2000446905 /* TestHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHomeViewController.swift; sourceTree = "<group>"; };
 		2DA7D375B5C0B549F288FB94 /* Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19_NIBM_Covid_19UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A79E1A5B896914887843BDD /* Pods-NIBM Covid 19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5065529AA932BB5539248FC5 /* Pods-NIBM Covid 19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19.release.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19/Pods-NIBM Covid 19.release.xcconfig"; sourceTree = "<group>"; };
 		5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		925F2AE9250BE49600C0DE41 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		925F2AE9250BE49600C0DE41 /* NotUseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotUseMapViewController.swift; sourceTree = "<group>"; };
 		925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		92D947A9250CBAE600EAD672 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
+		92D947B8250CDE5300EAD672 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationHandler.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/Utils/LocationHandler.swift"; sourceTree = "<group>"; };
+		92D947BA250CDE6A00EAD672 /* RideActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideActionView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/RideActionView.swift"; sourceTree = "<group>"; };
+		92D947BC250CDE7900EAD672 /* LocationInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationInputView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/LocationInputView.swift"; sourceTree = "<group>"; };
+		92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInputActivationUIView.swift; sourceTree = "<group>"; };
+		92D947C2250CDF8400EAD672 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		92D947C6250D45A300EAD672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AEED8566BCB36095A2C5C12D /* Pods_NIBM_Covid_19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D5BE4E337D46788CC45B8 /* Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19-NIBM Covid 19UITests/Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53F7052F8CA6228FEB9E185 /* Pods-NIBM Covid 19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +150,10 @@
 		27313CE0250800A6001BBE2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */,
+				92D947BC250CDE7900EAD672 /* LocationInputView.swift */,
+				92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */,
+				92D947BA250CDE6A00EAD672 /* RideActionView.swift */,
 				27313CE1250800C6001BBE2A /* AuthButtonUIButton.swift */,
 				27313CE2250800C9001BBE2A /* SettingsTableViewCell.swift */,
 			);
@@ -151,12 +171,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		27313CE625080102001BBE2A /* UIKits */ = {
+		27313CE625080102001BBE2A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				27313CE925080325001BBE2A /* extension.swift */,
+				92D947B8250CDE5300EAD672 /* LocationHandler.swift */,
 			);
-			path = UIKits;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		27313CEB250805D1001BBE2A /* Auth */ = {
@@ -194,12 +215,13 @@
 		27E0EFE62507DF1800F7C807 /* NIBM Covid 19 */ = {
 			isa = PBXGroup;
 			children = (
-				27313CE625080102001BBE2A /* UIKits */,
+				92D947AB250CBBDB00EAD672 /* Models */,
+				92D947A8250CBAC200EAD672 /* Service */,
+				27313CE625080102001BBE2A /* Utils */,
 				27313CE5250800E4001BBE2A /* Controllers */,
 				27313CE0250800A6001BBE2A /* Views */,
 				27E0EFE72507DF1800F7C807 /* AppDelegate.swift */,
 				27E0EFEB2507DF1800F7C807 /* ViewController.swift */,
-				27E0EFED2507DF1800F7C807 /* Main.storyboard */,
 				27E0EFF02507DF1B00F7C807 /* Assets.xcassets */,
 				27E0EFF22507DF1B00F7C807 /* LaunchScreen.storyboard */,
 				27E0F0172507E37500F7C807 /* GoogleService-Info.plist */,
@@ -252,13 +274,31 @@
 		27EE8005250A8C0500446905 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				27EE8006250A8C1F00446905 /* HomeViewController.swift */,
+				92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */,
 				27EE8007250A8C1F00446905 /* TabBarViewController.swift */,
 				27EE8008250A8C2000446905 /* TestHomeViewController.swift */,
-				925F2AE9250BE49600C0DE41 /* MapViewController.swift */,
+				925F2AE9250BE49600C0DE41 /* NotUseMapViewController.swift */,
 				925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */,
+				92D947C6250D45A300EAD672 /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		92D947A8250CBAC200EAD672 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				92D947A9250CBAE600EAD672 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		92D947AB250CBBDB00EAD672 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				92D947AC250CBBEC00EAD672 /* User.swift */,
+				92D947C2250CDF8400EAD672 /* UserAnnotation.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A889EDC9170B530C941A4A84 /* Pods */ = {
@@ -396,7 +436,6 @@
 				27E0EFF42507DF1B00F7C807 /* LaunchScreen.storyboard in Resources */,
 				27E0F0182507E37500F7C807 /* GoogleService-Info.plist in Resources */,
 				27E0EFF12507DF1B00F7C807 /* Assets.xcassets in Resources */,
-				27E0EFEF2507DF1800F7C807 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,12 +563,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */,
+				92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */,
+				92D947C7250D45A300EAD672 /* HomeViewController.swift in Sources */,
+				92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */,
 				27EE7FFA250A8BCD00446905 /* SurveyFourthViewController.swift in Sources */,
+				92D947AA250CBAE600EAD672 /* Service.swift in Sources */,
 				27EE7FF8250A8BCD00446905 /* SurveyThirdViewController.swift in Sources */,
 				27313CF0250805E9001BBE2A /* MainViewController.swift in Sources */,
+				92D947BF250CDE7A00EAD672 /* LocationInputView.swift in Sources */,
 				27313CEF250805E9001BBE2A /* LoginViewController.swift in Sources */,
 				27313CF1250805E9001BBE2A /* SignUpViewController.swift in Sources */,
-				27EE8009250A8C2000446905 /* HomeViewController.swift in Sources */,
+				92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */,
+				92D947B9250CDE5300EAD672 /* LocationHandler.swift in Sources */,
 				27313CE3250800C9001BBE2A /* AuthButtonUIButton.swift in Sources */,
 				27E0EFEC2507DF1800F7C807 /* ViewController.swift in Sources */,
 				27EE7FFB250A8BCD00446905 /* SurveyFifthViewController.swift in Sources */,
@@ -538,11 +584,13 @@
 				925F2AEE250C7C2600C0DE41 /* UpdateViewController.swift in Sources */,
 				27EE8001250A8BFA00446905 /* SettingsViewController.swift in Sources */,
 				27313CE4250800C9001BBE2A /* SettingsTableViewCell.swift in Sources */,
-				925F2AEA250BE49600C0DE41 /* MapViewController.swift in Sources */,
+				925F2AEA250BE49600C0DE41 /* NotUseMapViewController.swift in Sources */,
 				27EE800A250A8C2000446905 /* TabBarViewController.swift in Sources */,
 				27EE7FF9250A8BCD00446905 /* SurveyFirstViewController.swift in Sources */,
 				27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */,
+				92D947C4250CDF8500EAD672 /* UserAnnotation.swift in Sources */,
 				27313CEA25080325001BBE2A /* extension.swift in Sources */,
+				92D947AD250CBBEC00EAD672 /* User.swift in Sources */,
 				27E0EFE82507DF1800F7C807 /* AppDelegate.swift in Sources */,
 				27EE8004250A8BFA00446905 /* ShareViewController.swift in Sources */,
 				27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */,
@@ -581,14 +629,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		27E0EFED2507DF1800F7C807 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				27E0EFEE2507DF1800F7C807 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		27E0EFF22507DF1B00F7C807 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
