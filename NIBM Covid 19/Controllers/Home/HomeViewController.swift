@@ -575,7 +575,7 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(rootVC, animated: true)
     }
     @objc private func clickNoticeButton() {
-        let rootVC = SettingsViewController()
+        let rootVC = NotificationViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
     

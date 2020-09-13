@@ -8,29 +8,28 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
-class UserModal {
-    var name: String?
-    var age: String?
-    
-    init(name: String, age: String) {
-        self.name = name
-        self.age = age
-    }
-}
 
 class NotificationViewController: UIViewController {
 
     var tableView = UITableView()
-    var userArr = [UserModal]()
+    var notificationArr = [Notification]()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Notifications"
         view.backgroundColor = UIColor.backgroundColor
-        setTableView()
         getNotification()
+        
+//        let userID = Auth.auth().currentUser?.uid
+
+//        print("hello.......")
+//        Service.shared.fetchNotifications(uid: userID!) { (Notification) in
+//            print(Notification.text)
+//        }
+//        print("hello.......")
         
 //        let date = Date()
 //        let formatter = DateFormatter()
@@ -42,21 +41,12 @@ class NotificationViewController: UIViewController {
 //        "text": "This is a test Notification",
 //        "created": formatter.string(from: date),
 //        ] as [String : Any]
-//
-//        Database.database().reference().child("notifications").updateChildValues(values) { (error, ref) in
+//        let userID = Auth.auth().currentUser?.uid
+//        Database.database().reference().child("notifications").child("Hello 2").updateChildValues(values) { (error, ref) in
 //                        print("Successfuly Registerd and save data..")
-//                    }
+//        }
 
         
-        
-        userArr.append(UserModal( name: "Amber Heard", age: "32"))
-        userArr.append(UserModal( name: "Emma Stone", age: "30"))
-        userArr.append(UserModal( name: "Natalie Portman", age: "37"))
-        userArr.append(UserModal( name: "Emma Watson", age: "28"))
-        userArr.append(UserModal( name: "Angelina Jolie", age: "43"))
-        userArr.append(UserModal( name: "Scarlett Johansson", age: "34"))
-        userArr.append(UserModal( name: "Jennifer Lawrence", age: "28"))
-        userArr.append(UserModal( name: "Charlize Theron", age: "43"))
     }
     
 
@@ -80,20 +70,18 @@ class NotificationViewController: UIViewController {
     
     private func getNotification(){
         showUniversalLoadingView(true, loadingText: "Fetching Data..")
-//        let userID = Auth.auth().currentUser?.uid
-        Database.database().reference().child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user body temparature value
-            let value = snapshot.value as? NSDictionary
-//            var temparature = value?["bodyTemperature"] as? String ?? ""
-//            let temparatureUpdated = value?["bodyTemperatureUpdated"] as? String ?? ""
+        
+        Database.database().reference().child("notifications").observe(.value, with: { (snapshot) in
             
-            print(value)
-            
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let dict = child.value as? [String : AnyObject] ?? [:]
+                self.notificationArr.append(Notification( title: dict["title"] as! String, text: dict["text"] as! String, created: dict["created"] as! String))
+
+            }
+            self.setTableView()
 
             showUniversalLoadingView(false, loadingText: "")
             
-            
-
         }) { (error) in
             showUniversalLoadingView(false, loadingText: "")
             let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
@@ -109,14 +97,14 @@ class NotificationViewController: UIViewController {
 extension NotificationViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userArr.count
+        return notificationArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? NotificationTableViewCell else {fatalError("Unabel to create cell")}
 //        cell.userImage.image = userArr[indexPath.row].userImage
-        cell.namelbl.text = userArr[indexPath.row].name
-        cell.agelbl.text = userArr[indexPath.row].age
+        cell.namelbl.text = notificationArr[indexPath.row].title
+        cell.agelbl.text = notificationArr[indexPath.row].text
         return cell
     }
     

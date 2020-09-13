@@ -13,6 +13,7 @@ import GeoFire
 
 let DB_REF = Database.database().reference()
 let REF_USERS = DB_REF.child("users")
+let REF_NOTIFICATIONS = DB_REF.child("notifications")
 let REF_USER_LOCATIONS = DB_REF.child("user-locations")
 let REF_TRIPS = DB_REF.child("trips")
 
@@ -43,6 +44,19 @@ struct Service {
             })
         }
     }
+    
+//    func fetchNotifications(uid: String, completion: @escaping(Notification) -> Void) {
+//        REF_NOTIFICATIONS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+//            self.fetchNotifications(uid: uid) { (notification) in
+//                guard let dictionary = snapshot.value as? [String: Any] else { return }
+//                let uid = snapshot.key
+//                let notifi = Notification(uid: uid, dictionary: dictionary)
+//                completion(notifi)
+//                
+//            }
+//        }
+//    }
+
     
     
 }
