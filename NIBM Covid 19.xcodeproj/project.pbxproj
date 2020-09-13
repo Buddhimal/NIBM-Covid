@@ -52,6 +52,7 @@
 		92D947D3250E3DD300EAD672 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D2250E3DD300EAD672 /* Notification.swift */; };
 		92D947D5250E89ED00EAD672 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D4250E89ED00EAD672 /* SwipingViewController.swift */; };
 		92D947D7250E8FD500EAD672 /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D6250E8FD400EAD672 /* SafeActionCell.swift */; };
+		92D947DD250EB6BE00EAD672 /* HandleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947DC250EB6BE00EAD672 /* HandleLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		92D947D2250E3DD300EAD672 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		92D947D4250E89ED00EAD672 /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		92D947D6250E8FD400EAD672 /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
+		92D947DC250EB6BE00EAD672 /* HandleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleLocation.swift; sourceTree = "<group>"; };
 		AEED8566BCB36095A2C5C12D /* Pods_NIBM_Covid_19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D5BE4E337D46788CC45B8 /* Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19-NIBM Covid 19UITests/Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53F7052F8CA6228FEB9E185 /* Pods-NIBM Covid 19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				92D947A9250CBAE600EAD672 /* Service.swift */,
+				92D947DC250EB6BE00EAD672 /* HandleLocation.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				92D947D7250E8FD500EAD672 /* SafeActionCell.swift in Sources */,
 				27EE7FF9250A8BCD00446905 /* SurveyFirstViewController.swift in Sources */,
 				27EE8002250A8BFA00446905 /* ProfileViewController.swift in Sources */,
+				92D947DD250EB6BE00EAD672 /* HandleLocation.swift in Sources */,
 				92D947C4250CDF8500EAD672 /* UserAnnotation.swift in Sources */,
 				27313CEA25080325001BBE2A /* extension.swift in Sources */,
 				92D947AD250CBBEC00EAD672 /* User.swift in Sources */,
