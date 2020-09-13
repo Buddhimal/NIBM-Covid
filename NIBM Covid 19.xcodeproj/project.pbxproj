@@ -39,7 +39,6 @@
 		92D947AA250CBAE600EAD672 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947A9250CBAE600EAD672 /* Service.swift */; };
 		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
 		92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */; };
-		92D947B9250CDE5300EAD672 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B8250CDE5300EAD672 /* LocationHandler.swift */; };
 		92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BA250CDE6A00EAD672 /* RideActionView.swift */; };
 		92D947BF250CDE7A00EAD672 /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BC250CDE7900EAD672 /* LocationInputView.swift */; };
 		92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */; };
@@ -114,7 +113,6 @@
 		92D947A9250CBAE600EAD672 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
-		92D947B8250CDE5300EAD672 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationHandler.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/Utils/LocationHandler.swift"; sourceTree = "<group>"; };
 		92D947BA250CDE6A00EAD672 /* RideActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideActionView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/RideActionView.swift"; sourceTree = "<group>"; };
 		92D947BC250CDE7900EAD672 /* LocationInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationInputView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/LocationInputView.swift"; sourceTree = "<group>"; };
 		92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				27313CE925080325001BBE2A /* extension.swift */,
-				92D947B8250CDE5300EAD672 /* LocationHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -598,7 +595,6 @@
 				92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */,
 				92D947D5250E89ED00EAD672 /* SwipingViewController.swift in Sources */,
 				92D947CF250E25E500EAD672 /* NotificationViewController.swift in Sources */,
-				92D947B9250CDE5300EAD672 /* LocationHandler.swift in Sources */,
 				27313CE3250800C9001BBE2A /* AuthButtonUIButton.swift in Sources */,
 				27E0EFEC2507DF1800F7C807 /* ViewController.swift in Sources */,
 				27EE7FFB250A8BCD00446905 /* SurveyFifthViewController.swift in Sources */,
