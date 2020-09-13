@@ -185,8 +185,13 @@ class UpdateViewController: UIViewController {
         Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user body temparature value
             let value = snapshot.value as? NSDictionary
-            let temparature = value?["bodyTemperature"] as? String ?? ""
+            var temparature = value?["bodyTemperature"] as? String ?? ""
             let temparatureUpdated = value?["bodyTemperatureUpdated"] as? String ?? ""
+            
+            if(temparature == ""){
+                temparature = "0.0"
+            }
+            
             self.tempratureTextview.text = temparature
             showUniversalLoadingView(false, loadingText: "")
             
@@ -195,22 +200,27 @@ class UpdateViewController: UIViewController {
             let calendar = Calendar.current
             // specify the format,
             formatter.dateFormat = "dd-MM-yyyy HH:mm"
-            
-            let updatedAt = formatter.date(from: temparatureUpdated)
-            let today = formatter.date(from: formatter.string(from: date))
-            
-            let diff = calendar.dateComponents([.minute,.hour,.day], from: updatedAt!, to: today!)
-            
             var msg = "Last Updated: 0 Day ago"
+
             
-            if(diff.day! > 0){
-                msg = "Last Update: " + "\(diff.day!)" + " Day ago"
-            } else if(diff.hour! > 0){
-                msg = "Last Update: " + "\(diff.hour!)" + " Hour ago"
-            } else{
-                msg = "Last Update: " + "\(diff.minute!)" + " Minutes ago"
+            if(temparatureUpdated != ""){
+                let updatedAt = formatter.date(from: temparatureUpdated)
+                let today = formatter.date(from: formatter.string(from: date))
+                
+                let diff = calendar.dateComponents([.minute,.hour,.day], from: updatedAt!, to: today!)
+                
+                
+                if(diff.day! > 0){
+                    msg = "Last Update: " + "\(diff.day!)" + " Day ago"
+                } else if(diff.hour! > 0){
+                    msg = "Last Update: " + "\(diff.hour!)" + " Hour ago"
+                } else{
+                    msg = "Last Update: " + "\(diff.minute!)" + " Minutes ago"
+                }
+
             }
             
+                        
             self.lastUpdateLabel.text =  msg
             
 

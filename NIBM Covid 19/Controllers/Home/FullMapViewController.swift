@@ -262,10 +262,10 @@ extension FullMapViewController: MKMapViewDelegate {
             view.image =  #imageLiteral(resourceName: "infected_icon")
             return view
         }
-        
+
         return nil
     }
-    
+
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let route = self.route {
             let polyline = route.polyline
@@ -331,25 +331,7 @@ extension FullMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Search Result"
     }
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return section == 0 ? 2 : searchResults.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! LocationTableViewCell
-//
-//        if indexPath.section == 1 {
-//            cell.placemark = searchResults[indexPath.row]
-//        }
-//
-//        return cell
-//    }
-    
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

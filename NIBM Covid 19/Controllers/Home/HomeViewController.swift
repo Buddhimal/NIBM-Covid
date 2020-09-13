@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
     
     private let locationManager = LocationHandler.shared.locationManager
     private let mapView = MKMapView()
+    private var route: MKRoute?
+
     
     
     // MARK: - Lifecycle
@@ -28,6 +30,7 @@ class HomeViewController: UIViewController {
         
         
         //        configureNavigationBar()
+        AccessLocationServices()
         configureUI()
         fetchUsers()
 //        setBottomButtonControl()
@@ -121,6 +124,9 @@ class HomeViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.semanticContentAttribute = .forceRightToLeft
         
+        button.addTarget(self, action: #selector(clickSafeActions), for: .touchUpInside)
+
+        
         return button
     }()
     
@@ -144,6 +150,7 @@ class HomeViewController: UIViewController {
         attributedText.append(NSMutableAttributedString(string: "\nStaytune with us", attributes:
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
         ImageText.attributedText = attributedText
+//        ImageText.backgroundColor = .gray
         
         return ImageText
     }()
@@ -165,6 +172,7 @@ class HomeViewController: UIViewController {
 //        button.setTitle("hello", for: .normal)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+//        button.backgroundColor = .red
         
         button.addTarget(self, action: #selector(clickNoticeButton), for: .touchUpInside)
 
@@ -178,6 +186,10 @@ class HomeViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(clickSeeMoreButton), for: .touchUpInside)
+
+        
         return button
     }()
     
@@ -296,10 +308,21 @@ class HomeViewController: UIViewController {
         let bellIconStackView = UIView()
         bellIconStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bellIconStackView)
+//        bellIconStackView.backgroundColor = .orange
         
         bellIconStackView.addSubview(notificationImageView)
-        bellIconStackView.addSubview(bellIconTextView)
-        bellIconStackView.addSubview(nextButton)
+//        bellIconStackView.addSubview(bellIconTextView)
+//        bellIconStackView.addSubview(nextButton)
+        
+        let bellTextStackView = UIView()
+        bellTextStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bellTextStackView)
+//        bellTextStackView.backgroundColor = .gray
+        
+//        bellIconStackView.addSubview(notificationImageView)
+        bellTextStackView.addSubview(bellIconTextView)
+        bellTextStackView.addSubview(nextButton)
+
         
         let caseUpdateStackView = UIView()
         caseUpdateStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -356,9 +379,17 @@ class HomeViewController: UIViewController {
             
             bellIconStackView.topAnchor.constraint(equalTo: stayHomeImageContainerView.bottomAnchor),
             bellIconStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            bellIconStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+//            bellIconStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bellIconStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
             bellIconStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.2),
+            
+            
+            bellTextStackView.topAnchor.constraint(equalTo: stayHomeImageContainerView.bottomAnchor),
+            bellTextStackView.leadingAnchor.constraint(equalTo: bellIconStackView.trailingAnchor, constant: 10),
+//            bellTextStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bellTextStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
+            bellTextStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+
             
             
             notificationImageView.centerYAnchor.constraint(equalTo: bellIconStackView.centerYAnchor),
@@ -366,11 +397,12 @@ class HomeViewController: UIViewController {
             notificationImageView.heightAnchor.constraint(equalTo: bellIconStackView.heightAnchor, multiplier: 0.6),
             notificationImageView.widthAnchor.constraint(equalTo: bellIconStackView.widthAnchor, multiplier: 0.6),
             
-            bellIconTextView.leadingAnchor.constraint(equalTo: notificationImageView.trailingAnchor, constant: 15 ),
-            bellIconTextView.centerYAnchor.constraint(equalTo: notificationImageView.centerYAnchor),
+            bellIconTextView.leadingAnchor.constraint(equalTo: bellTextStackView.leadingAnchor, constant: 15 ),
+            bellIconTextView.centerYAnchor.constraint(equalTo: bellTextStackView.centerYAnchor),
             
-            nextButton.leadingAnchor.constraint(equalTo: bellIconTextView.trailingAnchor, constant: 15 ),
-            nextButton.centerYAnchor.constraint(equalTo: notificationImageView.centerYAnchor),
+            nextButton.leadingAnchor.constraint(equalTo: bellTextStackView.trailingAnchor, constant: -15 ),
+            nextButton.centerYAnchor.constraint(equalTo: bellTextStackView.centerYAnchor),
+            
             
             
             caseUpdateStackView.topAnchor.constraint(equalTo: bellIconStackView.bottomAnchor, constant: 10),
@@ -458,28 +490,17 @@ class HomeViewController: UIViewController {
         
         let mapStackView = UIView()
         mapStackView.translatesAutoresizingMaskIntoConstraints = false
-//        mapStackView.backgroundColor = .gray
         view.addSubview(mapStackView)
         
         mapStackView.addSubview(mapView)
         mapView.frame = view.frame
-//
+
         mapView.showsUserLocation = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.userTrackingMode = .follow
-        
-//        var region: MKCoordinateRegion = self.mapView.region
-//        var span: MKCoordinateSpan = mapView.region.span
-//        span.latitudeDelta *= 0.9
-//        span.longitudeDelta *= 0.9
-//        region.span = span
-//        mapView.setRegion(region, animated: true)
+        mapView.delegate = self
 
-        
-//        mapView.region
-//        let regionRadius: CLLocationDistance = 1000
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius * 2.0, regionRadius * 2.0)
-//        mapView.setRegion(coordinateRegion, animated: true)
+
 
 
         
@@ -539,11 +560,20 @@ class HomeViewController: UIViewController {
     
     //MARK: Functions
     
+    @objc private func clickSafeActions() {
+        let rootVC = SafeActionsViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    @objc private func clickSeeMoreButton() {
+        let rootVC = FullMapViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
     @objc private func clickSettingsButton() {
         let rootVC = SettingsViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
-    
     @objc private func clickNoticeButton() {
         let rootVC = SettingsViewController()
         navigationController?.pushViewController(rootVC, animated: true)
@@ -563,9 +593,9 @@ class HomeViewController: UIViewController {
     func checkUserLoggedIn(){
         if(Auth.auth().currentUser?.uid == nil){
             DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginViewController())
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+//                let nav = UINavigationController(rootViewController: LoginViewController())
+//                nav.modalPresentationStyle = .fullScreen
+//                self.present(nav, animated: true, completion: nil)
             }
         } else{
             print ("logged in")
@@ -602,3 +632,16 @@ extension HomeViewController {
         }
     }
 }
+
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? UserAnnotation {
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            view.image =  #imageLiteral(resourceName: "infected_icon")
+            return view
+        }
+
+        return nil
+    }
+}
+

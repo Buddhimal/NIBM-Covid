@@ -138,8 +138,6 @@ class SignUpViewController: UIViewController {
         //        navigationController?.navigationBar.barStyle = .black
     }
     
-    
-    
     // MARK: - Selectors
     
     @objc func handleSignUp() {
@@ -149,30 +147,14 @@ class SignUpViewController: UIViewController {
         guard let lastName = lastNameTextFiled.text else { return }
         let role = accountTypeSegmentedControl.selectedSegmentIndex
         
-        func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
-            REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
                 
-                //handle error
-                
-                let keyWindow = UIApplication.shared.connectedScenes
-                    .filter({$0.activationState == .foregroundActive})
-                    .map({$0 as? UIWindowScene})
-                    .compactMap({$0})
-                    .first?.windows
-                    .filter({$0.isKeyWindow}).first
-                
-                guard let controller = keyWindow?.rootViewController as? FullMapViewController else { return }
-                controller.configure()
-                
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-        
         
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("Faild to register user with error \(error)")
+                let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+                uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(uialert, animated: true, completion: nil)
                 return
             }
             
@@ -206,20 +188,32 @@ class SignUpViewController: UIViewController {
     
     func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+            if let error = error {
+                let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+                uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(uialert, animated: true, completion: nil)
+                return
+            }
             
             //handle error
             
-            let keyWindow = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .map({$0 as? UIWindowScene})
-                .compactMap({$0})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first
+//            let keyWindow = UIApplication.shared.connectedScenes
+//                .filter({$0.activationState == .foregroundActive})
+//                .map({$0 as? UIWindowScene})
+//                .compactMap({$0})
+//                .first?.windows
+//                .filter({$0.isKeyWindow}).first
             
-            guard let controller = keyWindow?.rootViewController as? FullMapViewController else { return }
-            controller.configure()
+//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+//            controller.configure()
             
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+            
+            let nav = UINavigationController(rootViewController: HomeViewController())
+
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+            
         }
     }
     

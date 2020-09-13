@@ -9,8 +9,8 @@
 import CoreLocation
 
 enum AccountType: Int {
-    case passenger
-    case driver
+    case student
+    case teacher
 }
 
 struct User {

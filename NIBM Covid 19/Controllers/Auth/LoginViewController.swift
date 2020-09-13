@@ -107,17 +107,26 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-                let keyWindow = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .map({$0 as? UIWindowScene})
-                .compactMap({$0})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first
+                let nav = UINavigationController(rootViewController: HomeViewController())
+
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
                 
-                guard let controller = keyWindow?.rootViewController as? FullMapViewController else { return }
-                controller.configure()
+//                let keyWindow = UIApplication.shared.connectedScenes
+//                .filter({$0.activationState == .foregroundActive})
+//                .map({$0 as? UIWindowScene})
+//                .compactMap({$0})
+//                .first?.windows
+//                .filter({$0.isKeyWindow}).first
+//
+////                print("hello........")
+//                guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+//                print("hello........")
+//                controller.configure()
                 
-                self.dismiss(animated: true, completion: nil)
+                
+                
+//                self.dismiss(animated: true, completion: nil)
                 
             }
         }

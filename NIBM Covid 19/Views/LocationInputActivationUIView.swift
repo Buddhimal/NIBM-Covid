@@ -27,7 +27,7 @@ class LocationInputActivationUIView: UIView {
     
     private let placeholderLable: UILabel = {
         let label = UILabel()
-        label.text = "Where to?"
+        label.text = "Search Area"
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .darkGray
         
