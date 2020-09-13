@@ -13,12 +13,7 @@ class NotificationTableViewCell: UITableViewCell {
     
     lazy var backView: UIView = {
         
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
-
-        
-        let view = UIView(frame: CGRect(x: 10, y: 6, width: screenWidth - 20, height: 110))
+        let view = UIView(frame: CGRect(x: 10, y: 6, width: UIScreen.main.bounds.size.width - 20, height: 110))
         view.backgroundColor = UIColor.white
         return view
     }()
@@ -30,19 +25,26 @@ class NotificationTableViewCell: UITableViewCell {
         return userImage
     }()
     
-    lazy var namelbl: UILabel = {
-        let lbl = UILabel(frame: CGRect(x: 116, y: 8, width: backView.frame.width - 116, height: 30))
+    lazy var titleLbl: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 116, y: 8, width: UIScreen.main.bounds.size.width - 116, height: 30))
         lbl.textAlignment = .left
         lbl.font = UIFont.boldSystemFont(ofSize: 18)
         return lbl
     }()
     
-    lazy var agelbl: UILabel = {
-        let lbl = UILabel(frame: CGRect(x: 116, y: 42, width: backView.frame.width - 116, height: 30))
+    lazy var textLbl: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 116, y: 42, width: UIScreen.main.bounds.size.width - 116, height: 30))
         lbl.textAlignment = .left
         return lbl
     }()
-
+    
+    lazy var dateLbl: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 116, y: 82, width: UIScreen.main.bounds.size.width - 116, height: 30))
+        lbl.textAlignment = .left
+        lbl.font = UIFont.systemFont(ofSize: 12)
+        return lbl
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -63,8 +65,9 @@ class NotificationTableViewCell: UITableViewCell {
 
         addSubview(backView)
         backView.addSubview(userImage)
-        backView.addSubview(namelbl)
-        backView.addSubview(agelbl)
+        backView.addSubview(titleLbl)
+        backView.addSubview(textLbl)
+        backView.addSubview(dateLbl)
 
     }
 

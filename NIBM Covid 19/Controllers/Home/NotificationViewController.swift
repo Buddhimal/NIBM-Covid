@@ -19,7 +19,7 @@ class NotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Notifications"
+        title = "All News"
         view.backgroundColor = UIColor.backgroundColor
         getNotification()
         
@@ -33,7 +33,7 @@ class NotificationViewController: UIViewController {
         
 //        let date = Date()
 //        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+//        formatter.dateFormat = "MMM dd,yyyy"
 //
 //
 //        let values = [
@@ -102,9 +102,11 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? NotificationTableViewCell else {fatalError("Unabel to create cell")}
-//        cell.userImage.image = userArr[indexPath.row].userImage
-        cell.namelbl.text = notificationArr[indexPath.row].title
-        cell.agelbl.text = notificationArr[indexPath.row].text
+    
+        
+        cell.titleLbl.text = notificationArr[indexPath.row].title
+        cell.textLbl.text = notificationArr[indexPath.row].text
+        cell.dateLbl.text = notificationArr[indexPath.row].created
         return cell
     }
     
