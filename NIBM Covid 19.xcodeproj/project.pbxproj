@@ -40,7 +40,6 @@
 		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
 		92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */; };
 		92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BA250CDE6A00EAD672 /* RideActionView.swift */; };
-		92D947BF250CDE7A00EAD672 /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BC250CDE7900EAD672 /* LocationInputView.swift */; };
 		92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */; };
 		92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */; };
 		92D947C4250CDF8500EAD672 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947C2250CDF8400EAD672 /* UserAnnotation.swift */; };
@@ -53,6 +52,7 @@
 		92D947D5250E89ED00EAD672 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D4250E89ED00EAD672 /* SwipingViewController.swift */; };
 		92D947D7250E8FD500EAD672 /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D6250E8FD400EAD672 /* SafeActionCell.swift */; };
 		92D947DF250EB88100EAD672 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947DE250EB88100EAD672 /* LocationHandler.swift */; };
+		92D947E1250EBA4D00EAD672 /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947E0250EBA4D00EAD672 /* LocationInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +115,6 @@
 		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
 		92D947BA250CDE6A00EAD672 /* RideActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideActionView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/RideActionView.swift"; sourceTree = "<group>"; };
-		92D947BC250CDE7900EAD672 /* LocationInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationInputView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/LocationInputView.swift"; sourceTree = "<group>"; };
 		92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInputActivationUIView.swift; sourceTree = "<group>"; };
 		92D947C2250CDF8400EAD672 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		92D947D4250E89ED00EAD672 /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		92D947D6250E8FD400EAD672 /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
 		92D947DE250EB88100EAD672 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationHandler.swift; path = ../Service/LocationHandler.swift; sourceTree = "<group>"; };
+		92D947E0250EBA4D00EAD672 /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
 		AEED8566BCB36095A2C5C12D /* Pods_NIBM_Covid_19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D5BE4E337D46788CC45B8 /* Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19-NIBM Covid 19UITests/Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53F7052F8CA6228FEB9E185 /* Pods-NIBM Covid 19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,13 +165,13 @@
 			isa = PBXGroup;
 			children = (
 				92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */,
-				92D947BC250CDE7900EAD672 /* LocationInputView.swift */,
 				92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */,
 				92D947BA250CDE6A00EAD672 /* RideActionView.swift */,
 				27313CE1250800C6001BBE2A /* AuthButtonUIButton.swift */,
 				27313CE2250800C9001BBE2A /* SettingsTableViewCell.swift */,
 				92D947D0250E2B4E00EAD672 /* NotificationTableViewCell.swift */,
 				92D947D6250E8FD400EAD672 /* SafeActionCell.swift */,
+				92D947E0250EBA4D00EAD672 /* LocationInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -592,9 +592,9 @@
 				92D947AA250CBAE600EAD672 /* Service.swift in Sources */,
 				27EE7FF8250A8BCD00446905 /* SurveyThirdViewController.swift in Sources */,
 				27313CF0250805E9001BBE2A /* MainViewController.swift in Sources */,
-				92D947BF250CDE7A00EAD672 /* LocationInputView.swift in Sources */,
 				92D947DF250EB88100EAD672 /* LocationHandler.swift in Sources */,
 				27313CEF250805E9001BBE2A /* LoginViewController.swift in Sources */,
+				92D947E1250EBA4D00EAD672 /* LocationInputView.swift in Sources */,
 				27313CF1250805E9001BBE2A /* SignUpViewController.swift in Sources */,
 				92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */,
 				92D947D5250E89ED00EAD672 /* SwipingViewController.swift in Sources */,

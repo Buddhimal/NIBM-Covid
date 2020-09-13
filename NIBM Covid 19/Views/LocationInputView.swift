@@ -1,9 +1,9 @@
 //
 //  LocationInputView.swift
-//  NibmTaxi
+//  NIBM Covid19
 //
-//  Created by thusitha on 8/12/20.
-//  Copyright © 2020 nibm. All rights reserved.
+//  Created by Buddhimal Gunasekara on 9/10/20.
+//  Copyright © 2020 NIBM. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class LocationInputView: UIView {
     // MARK: - Properties
     
     var user: User? {
-        didSet { titleLabel.text = user?.fullName }
+        didSet { titleLabel.text = user?.firstName }
     }
     
     var delegate: LocationInputViewDelegate?
@@ -109,35 +109,37 @@ class LocationInputView: UIView {
         addShadow()
         
         addSubview(backButton)
-        backButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 44,
+        backButton.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, paddingTop: 5,
                           paddingLeft: 12, width: 24, height: 24)
         
         addSubview(titleLabel)
         titleLabel.centerY(inView: backButton)
         titleLabel.centerX(inView: self)
         
-        addSubview(startingLocationTextField)
-        startingLocationTextField.anchor(top: backButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 40, paddingRight: 40, height: 30)
+//        addSubview(startingLocationTextField)
+//        startingLocationTextField.anchor(top: backButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 40, paddingRight: 40, height: 30)
+        
+//        startingLocationTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         
         addSubview(destinationTextField)
-        destinationTextField.anchor(top: startingLocationTextField.bottomAnchor, left: leftAnchor,
+        destinationTextField.anchor(top: backButton.bottomAnchor, left: leftAnchor,
                                     right: rightAnchor, paddingTop: 12, paddingLeft: 40,
                                     paddingRight: 40,height: 30)
         
-        addSubview(startLocationIndicatorView)
-        startLocationIndicatorView.centerY(inView: startingLocationTextField, leftAnchor: leftAnchor, paddingLeft: 20)
-        startLocationIndicatorView.setDimensions(height: 6, width: 6)
-        startLocationIndicatorView.layer.cornerRadius = 6 / 2
+//        addSubview(startLocationIndicatorView)
+//        startLocationIndicatorView.centerY(inView: startingLocationTextField, leftAnchor: leftAnchor, paddingLeft: 20)
+//        startLocationIndicatorView.setDimensions(height: 6, width: 6)
+//        startLocationIndicatorView.layer.cornerRadius = 6 / 2
         
         addSubview(destinationIndicatorView)
         destinationIndicatorView.centerY(inView: destinationTextField, leftAnchor: leftAnchor, paddingLeft: 20)
         destinationIndicatorView.setDimensions(height: 6, width: 6)
         
-        addSubview(linkingView)
-        linkingView.anchor(top: startLocationIndicatorView.bottomAnchor,
-                           bottom: destinationIndicatorView.topAnchor, paddingTop: 4,
-                           paddingLeft: 0, paddingBottom: 4, width: 0.5)
-        linkingView.centerX(inView: startLocationIndicatorView)
+//        addSubview(linkingView)
+//        linkingView.anchor(top: startLocationIndicatorView.bottomAnchor,
+//                           bottom: destinationIndicatorView.topAnchor, paddingTop: 4,
+//                           paddingLeft: 0, paddingBottom: 4, width: 0.5)
+//        linkingView.centerX(inView: startLocationIndicatorView)
     }
 }
 
