@@ -30,7 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                print("Sign out Error")
 //            }
 
-            
+//            let layout = UICollectionViewFlowLayout()
+//            layout.scrollDirection = .horizontal
+//            let swipingViewController = SwipingViewController(collectionViewLayout: layout)
+//            window?.rootViewController = swipingViewController
             
 //            window?.rootViewController = UINavigationController(rootViewController: SurveyFirstViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: SignUpViewController())

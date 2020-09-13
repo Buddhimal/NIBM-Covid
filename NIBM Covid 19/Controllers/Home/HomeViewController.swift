@@ -561,8 +561,11 @@ class HomeViewController: UIViewController {
     //MARK: Functions
     
     @objc private func clickSafeActions() {
-        let rootVC = SafeActionsViewController()
-        navigationController?.pushViewController(rootVC, animated: true)
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+
+        let swipingViewController = SwipingViewController(collectionViewLayout: layout)
+        navigationController?.pushViewController(swipingViewController, animated: true)
     }
     
     @objc private func clickSeeMoreButton() {
@@ -578,8 +581,6 @@ class HomeViewController: UIViewController {
         let rootVC = NotificationViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
-    
-    
     
     @objc private func clickUpdateButton() {
         let rootVC = UpdateViewController()

@@ -15,7 +15,6 @@ class NotificationViewController: UIViewController {
 
     var tableView = UITableView()
     var notificationArr = [Notification]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

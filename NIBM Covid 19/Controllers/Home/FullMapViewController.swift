@@ -54,9 +54,9 @@ class FullMapViewController: UIViewController {
         
         //checkIsUserLoggedIn()
         //signOut()
+        AccessLocationServices()
         configure()
         configureLocationInputActivationView()
-        AccessLocationServices()
         
        view.backgroundColor = .white
     }
