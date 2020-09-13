@@ -39,7 +39,6 @@
 		92D947AA250CBAE600EAD672 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947A9250CBAE600EAD672 /* Service.swift */; };
 		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
 		92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */; };
-		92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BA250CDE6A00EAD672 /* RideActionView.swift */; };
 		92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */; };
 		92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */; };
 		92D947C4250CDF8500EAD672 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947C2250CDF8400EAD672 /* UserAnnotation.swift */; };
@@ -114,7 +113,6 @@
 		92D947A9250CBAE600EAD672 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		92D947B6250CDE3D00EAD672 /* FullMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
-		92D947BA250CDE6A00EAD672 /* RideActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideActionView.swift; path = "../../../../../Downloads/advanced_iOS_development-master/08_Proj_WorkWithFirebase/NibmTaxi/NibmTaxi/View/RideActionView.swift"; sourceTree = "<group>"; };
 		92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInputActivationUIView.swift; sourceTree = "<group>"; };
 		92D947C2250CDF8400EAD672 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 			children = (
 				92D947BE250CDE7A00EAD672 /* LocationInputActivationUIView.swift */,
 				92D947BD250CDE7900EAD672 /* LocationTableViewCell.swift */,
-				92D947BA250CDE6A00EAD672 /* RideActionView.swift */,
 				27313CE1250800C6001BBE2A /* AuthButtonUIButton.swift */,
 				27313CE2250800C9001BBE2A /* SettingsTableViewCell.swift */,
 				92D947D0250E2B4E00EAD672 /* NotificationTableViewCell.swift */,
@@ -585,7 +582,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */,
-				92D947BB250CDE6A00EAD672 /* RideActionView.swift in Sources */,
 				92D947C7250D45A300EAD672 /* HomeViewController.swift in Sources */,
 				92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */,
 				27EE7FFA250A8BCD00446905 /* SurveyFourthViewController.swift in Sources */,
