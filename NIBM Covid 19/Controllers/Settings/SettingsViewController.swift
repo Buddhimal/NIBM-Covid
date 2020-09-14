@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
     
@@ -118,7 +119,7 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .white
         title = "Settings"
         
-        setButtonControl()
+        checkUserLoggedIn()
         //
         //        view.addSubview(button)
         //        button.setTitle("Click me", for: .normal)
@@ -145,8 +146,31 @@ class SettingsViewController: UIViewController {
     }
     
     @objc private func clickLogOutButton() {
-        let rootVC = AboutUsViewController()
-        navigationController?.pushViewController(rootVC, animated: true)
+        
+        do{
+            try
+                Auth.auth().signOut()
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+                
+            
+        } catch{
+            print("Sign out Error")
+        }
+        
+    }
+    
+    func checkUserLoggedIn(){
+        if(Auth.auth().currentUser?.uid == nil){
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else{
+            setButtonControl()
+        }
     }
     
 }

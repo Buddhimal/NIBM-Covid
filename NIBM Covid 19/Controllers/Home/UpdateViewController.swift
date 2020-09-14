@@ -18,8 +18,8 @@ class UpdateViewController: UIViewController {
         super.viewDidLoad()
         title = "Update"
         view.backgroundColor = UIColor.backgroundColor
-        configureUI()
-        setTempreture()
+        checkUserLoggedIn()
+        
     }
     
     private let createTextView: UILabel = {
@@ -87,7 +87,7 @@ class UpdateViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addTarget(self, action: #selector(clickNewSurveyButton), for: .touchUpInside)
-
+        
         
         return button
     }()
@@ -142,7 +142,7 @@ class UpdateViewController: UIViewController {
         
         return textField
         
-//        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
+        //        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
     }()
     
     private let updateButton: UIButton = {
@@ -172,13 +172,13 @@ class UpdateViewController: UIViewController {
             let date = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "dd-MM-yyyy HH:mm"
-
+            
             
             let values = [
                 "bodyTemperature": temp,
                 "bodyTemperatureUpdated": formatter.string(from: date),
                 ] as [String : Any]
-
+            
             
             Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
                 if let error = error {
@@ -217,7 +217,7 @@ class UpdateViewController: UIViewController {
             // specify the format,
             formatter.dateFormat = "dd-MM-yyyy HH:mm"
             var msg = "Last Updated: 0 Day ago"
-
+            
             
             if(temparatureUpdated != ""){
                 let updatedAt = formatter.date(from: temparatureUpdated)
@@ -233,13 +233,13 @@ class UpdateViewController: UIViewController {
                 } else{
                     msg = "Last Update: " + "\(diff.minute!)" + " Minutes ago"
                 }
-
+                
             }
             
-                        
+            
             self.lastUpdateLabel.text =  msg
             
-
+            
         }) { (error) in
             showUniversalLoadingView(false, loadingText: "")
             let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
@@ -359,6 +359,19 @@ class UpdateViewController: UIViewController {
         let rootVC = CreateNotificationViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
-
+    
+    func checkUserLoggedIn(){
+        if(Auth.auth().currentUser?.uid == nil){
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else{
+            configureUI()
+            setTempreture()
+        }
+    }
+    
     
 }

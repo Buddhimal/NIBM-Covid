@@ -600,14 +600,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func signout(){
-        do{
-            try Auth.auth().signOut()
-        } catch{
-            print("Sign out Error")
-        }
-    }
-    
+        
 }
 
 // MARK: - LocationServices
