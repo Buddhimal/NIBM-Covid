@@ -92,7 +92,7 @@ class SurveyFirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         view.addSubview(questionTextView)
         setupLayout()
         setButtonControl()
@@ -173,7 +173,7 @@ class SurveyFirstViewController: UIViewController {
                 "surveyOne": action ??  false
                 ] as [String : Any]
             
-            Database.database().reference().child("survey").child(userId).updateChildValues(values) { (error, ref) in
+            Database.database().reference().child("users").child(userId).updateChildValues(values) { (error, ref) in
             }
             
             vc = SurveySecondViewController()

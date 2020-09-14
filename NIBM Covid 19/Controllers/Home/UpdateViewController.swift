@@ -82,6 +82,10 @@ class UpdateViewController: UIViewController {
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(clickNewSurveyButton), for: .touchUpInside)
+
+        
         return button
     }()
     
@@ -126,7 +130,14 @@ class UpdateViewController: UIViewController {
     
     
     private let tempratureTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
+        let textField = UITextField()
+        textField.placeholder = "Enter Your Temprature"
+        textField.textAlignment = .center
+        textField.backgroundColor = .backgroundColor
+        
+        return textField
+        
+//        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
     }()
     
     private let updateButton: UIButton = {
@@ -143,7 +154,7 @@ class UpdateViewController: UIViewController {
     
     @objc private func updateTemp(){
         
-        showUniversalLoadingView(true, loadingText: "Saving Data..")
+        
         guard let temp = tempratureTextField.text else { return }
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
@@ -152,7 +163,7 @@ class UpdateViewController: UIViewController {
             uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(uialert, animated: true, completion: nil)
         } else {
-            
+            showUniversalLoadingView(true, loadingText: "Saving Data..")
             let date = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -333,5 +344,11 @@ class UpdateViewController: UIViewController {
         ])
         
     }
+    
+    @objc private func clickNewSurveyButton() {
+        let rootVC = SurveyFirstViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+
     
 }

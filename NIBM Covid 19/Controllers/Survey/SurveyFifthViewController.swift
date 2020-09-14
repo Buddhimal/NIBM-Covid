@@ -58,7 +58,7 @@ class SurveyFifthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         view.addSubview(questionTextView)
         setupLayout()
         setButtonControl()
@@ -120,13 +120,13 @@ class SurveyFifthViewController: UIViewController {
 //            vc.modalPresentationStyle = .fullScreen
 //            self.dismiss(animated: true, completion: nil)
             
-            let nav = UINavigationController(rootViewController: MapViewController())
+            let nav = UINavigationController(rootViewController: HomeViewController())
             
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
             
-            let rootVC = SettingsViewController()
-            navigationController?.pushViewController(rootVC, animated: true)
+//            let rootVC = SettingsViewController()
+//            navigationController?.pushViewController(rootVC, animated: true)
             
 
             
