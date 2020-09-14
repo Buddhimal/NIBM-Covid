@@ -50,7 +50,7 @@ class FullMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Infected Result"
+        title = "Danger Areas"
         
         //checkIsUserLoggedIn()
         //signOut()
@@ -81,11 +81,41 @@ class FullMapViewController: UIViewController {
     }
     
     
+    func fetchUserData() {
+            guard let location = locationManager?.location else { return }
+            Service.shared.fetchAllUsers(uid: "1") { (user) in
+                guard let coordinate = user.location?.coordinate else { return }
+                let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+                var userIsVisible: Bool {
+                    
+                    return self.mapView.annotations.contains { (annotation) -> Bool in
+                        guard let userAnno = annotation as? UserAnnotation else { return false }
+                        
+                        if userAnno.uid == user.uid {
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+
+                            return true
+                        }
+                        return false
+                    }
+                }
+                
+                if !userIsVisible {
+                    self.mapView.addAnnotation(annotation)
+                    
+                }
+            }
+        }
+    
+    
     func fetchUsers() {
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
+//            print("came2.........")
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+//            print("came3.........")
+//            print(annotation)
             
             var userIsVisible: Bool {
                 
@@ -93,7 +123,13 @@ class FullMapViewController: UIViewController {
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     
                     if userAnno.uid == user.uid {
+//                        print("updating....")
+//                        print(userAnno)
+//                        print(coordinate)
                         userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+//                        self.mapView.removeAnnotation(annotation)
+//                        self.mapView.addAnnotation(annotation)
+
                         return true
                     }
                     
@@ -102,9 +138,15 @@ class FullMapViewController: UIViewController {
             }
             
             if !userIsVisible {
+                
+                print(annotation)
+                
                 self.mapView.addAnnotation(annotation)
+                
             }
         }
+        print("user.uid")
+
     }
 
     
@@ -266,16 +308,16 @@ extension FullMapViewController: MKMapViewDelegate {
         return nil
     }
 
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let route = self.route {
-            let polyline = route.polyline
-            let lineRenderer = MKPolylineRenderer(overlay: polyline)
-            lineRenderer.strokeColor = .mainBlueTint
-            lineRenderer.lineWidth = 4
-            return lineRenderer
-        }
-        return MKOverlayRenderer()
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        if let route = self.route {
+//            let polyline = route.polyline
+//            let lineRenderer = MKPolylineRenderer(overlay: polyline)
+//            lineRenderer.strokeColor = .mainBlueTint
+//            lineRenderer.lineWidth = 4
+//            return lineRenderer
+//        }
+//        return MKOverlayRenderer()
+//    }
 }
 
 // MARK: - LocationServices

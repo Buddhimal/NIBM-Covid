@@ -60,6 +60,9 @@ class UpdateViewController: UIViewController {
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(clickNewNotifiButton), for: .touchUpInside)
+        
         return button
     }()
     
@@ -134,6 +137,8 @@ class UpdateViewController: UIViewController {
         textField.placeholder = "Enter Your Temprature"
         textField.textAlignment = .center
         textField.backgroundColor = .backgroundColor
+        textField.frame = CGRect(x: 10, y: 10, width: 100, height: 50)
+        textField.borderStyle = .roundedRect
         
         return textField
         
@@ -347,6 +352,11 @@ class UpdateViewController: UIViewController {
     
     @objc private func clickNewSurveyButton() {
         let rootVC = SurveyFirstViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    @objc private func clickNewNotifiButton() {
+        let rootVC = CreateNotificationViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
 

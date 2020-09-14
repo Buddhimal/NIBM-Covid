@@ -52,6 +52,7 @@
 		92D947D7250E8FD500EAD672 /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947D6250E8FD400EAD672 /* SafeActionCell.swift */; };
 		92D947DF250EB88100EAD672 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947DE250EB88100EAD672 /* LocationHandler.swift */; };
 		92D947E1250EBA4D00EAD672 /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947E0250EBA4D00EAD672 /* LocationInputView.swift */; };
+		92D947E3250FF8BC00EAD672 /* CreateNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947E2250FF8BC00EAD672 /* CreateNotificationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		92D947D6250E8FD400EAD672 /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
 		92D947DE250EB88100EAD672 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationHandler.swift; path = ../Service/LocationHandler.swift; sourceTree = "<group>"; };
 		92D947E0250EBA4D00EAD672 /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
+		92D947E2250FF8BC00EAD672 /* CreateNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotificationViewController.swift; sourceTree = "<group>"; };
 		AEED8566BCB36095A2C5C12D /* Pods_NIBM_Covid_19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0D5BE4E337D46788CC45B8 /* Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19-NIBM Covid 19UITests/Pods-NIBM Covid 19-NIBM Covid 19UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53F7052F8CA6228FEB9E185 /* Pods-NIBM Covid 19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM Covid 19Tests.debug.xcconfig"; path = "Target Support Files/Pods-NIBM Covid 19Tests/Pods-NIBM Covid 19Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		27313CE625080102001BBE2A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				92D947CA250D717600EAD672 /* loader.swift */,
 				92D947DE250EB88100EAD672 /* LocationHandler.swift */,
 				27313CE925080325001BBE2A /* extension.swift */,
 			);
@@ -296,6 +299,7 @@
 				92D947CC250D727800EAD672 /* SafeActionsViewController.swift */,
 				92D947CE250E25E500EAD672 /* NotificationViewController.swift */,
 				92D947D4250E89ED00EAD672 /* SwipingViewController.swift */,
+				92D947E2250FF8BC00EAD672 /* CreateNotificationViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -313,7 +317,6 @@
 			children = (
 				92D947AC250CBBEC00EAD672 /* User.swift */,
 				92D947C2250CDF8400EAD672 /* UserAnnotation.swift */,
-				92D947CA250D717600EAD672 /* loader.swift */,
 				92D947D2250E3DD300EAD672 /* Notification.swift */,
 			);
 			path = Models;
@@ -616,6 +619,7 @@
 				92D947AD250CBBEC00EAD672 /* User.swift in Sources */,
 				27E0EFE82507DF1800F7C807 /* AppDelegate.swift in Sources */,
 				27EE8004250A8BFA00446905 /* ShareViewController.swift in Sources */,
+				92D947E3250FF8BC00EAD672 /* CreateNotificationViewController.swift in Sources */,
 				92D947CB250D717600EAD672 /* loader.swift in Sources */,
 				27EE800B250A8C2000446905 /* TestHomeViewController.swift in Sources */,
 			);

@@ -28,7 +28,9 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .white
         title = "Home"
         
-        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+
         //        configureNavigationBar()
         AccessLocationServices()
         configureUI()
@@ -499,11 +501,6 @@ class HomeViewController: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.userTrackingMode = .follow
         mapView.delegate = self
-
-
-
-
-        
 
         NSLayoutConstraint.activate([
             

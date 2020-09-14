@@ -26,6 +26,7 @@ struct Service {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             let uid = snapshot.key
+            print("user.........")
             let user = User(uid: uid, dictionary: dictionary)
             completion(user)
         }
@@ -38,6 +39,9 @@ struct Service {
             geoFire.query(at: location, withRadius: 50).observe(.keyEntered, with: { (uid, location) in
                 self.fetchUserData(uid: uid) { (user) in
                     var usr = user
+                    //                    print("came.........")
+                    //                    print(usr.location)
+                    //                    print(location)
                     usr.location = location
                     completion(usr)
                 }
@@ -45,18 +49,29 @@ struct Service {
         }
     }
     
-//    func fetchNotifications(uid: String, completion: @escaping(Notification) -> Void) {
-//        REF_NOTIFICATIONS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-//            self.fetchNotifications(uid: uid) { (notification) in
-//                guard let dictionary = snapshot.value as? [String: Any] else { return }
-//                let uid = snapshot.key
-//                let notifi = Notification(uid: uid, dictionary: dictionary)
-//                completion(notifi)
-//                
-//            }
-//        }
-//    }
-
+    func fetchAllUsers(uid: String, completion: @escaping(User) -> Void) {
+        REF_USERS.observe(.value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let uid = snapshot.key
+            print("user.........")
+            let user = User(uid: uid, dictionary: dictionary)
+            print(user)
+            completion(user)
+        }
+    }
+    
+    //    func fetchNotifications(uid: String, completion: @escaping(Notification) -> Void) {
+    //        REF_NOTIFICATIONS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+    //            self.fetchNotifications(uid: uid) { (notification) in
+    //                guard let dictionary = snapshot.value as? [String: Any] else { return }
+    //                let uid = snapshot.key
+    //                let notifi = Notification(uid: uid, dictionary: dictionary)
+    //                completion(notifi)
+    //
+    //            }
+    //        }
+    //    }
+    
     
     
 }

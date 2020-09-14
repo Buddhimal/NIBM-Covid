@@ -18,6 +18,9 @@ class SurveyFirstViewController: UIViewController {
     func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = true
         //        navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+
     }
     
     //    MARK: UI Components
