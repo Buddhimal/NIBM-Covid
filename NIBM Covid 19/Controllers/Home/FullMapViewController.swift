@@ -14,6 +14,7 @@ import MapKit
 private let reuseIdentifier = "LocationCell"
 private let annotationIdentifier = "DriverAnnotation"
 
+
 private enum ActionButtonConfiguration {
     case showMenu
     case dismissActionView
@@ -36,8 +37,9 @@ class FullMapViewController: UIViewController {
     private final let locationInputViewHeight: CGFloat = 200
     private var actionButtonConfig = ActionButtonConfiguration()
     private var route: MKRoute?
+    private var infectedCount = 0
     
-
+    var userNotificationArray = [String]()
     
     private let actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -80,74 +82,55 @@ class FullMapViewController: UIViewController {
         }
     }
     
-    
-    func fetchUserData() {
-            guard let location = locationManager?.location else { return }
-            Service.shared.fetchAllUsers(uid: "1") { (user) in
-                guard let coordinate = user.location?.coordinate else { return }
-                let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
-                var userIsVisible: Bool {
-                    
-                    return self.mapView.annotations.contains { (annotation) -> Bool in
-                        guard let userAnno = annotation as? UserAnnotation else { return false }
-                        
-                        if userAnno.uid == user.uid {
-                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-
-                            return true
-                        }
-                        return false
-                    }
-                }
-                
-                if !userIsVisible {
-                    self.mapView.addAnnotation(annotation)
-                    
-                }
-            }
-        }
-    
-    
     func fetchUsers() {
+        Service.shared.fetchAllUsers { (user) in
+//            print("Fetching users")
+//            print(user.firstName)
+            self.infectedCount = self.infectedCount + 1
+            print("count")
+            print(self.infectedCount)
+            self.showAlert(title: "Test", text: user.firstName)
+        }
+    }
+    
+    func fetchUserLocations() {
+//        let user = Auth.auth().currentUser;
+//        guard let userId = user?.uid else { return }
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
-//            print("came2.........")
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
-//            print("came3.........")
-//            print(annotation)
-            
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     
                     if userAnno.uid == user.uid {
-//                        print("updating....")
-//                        print(userAnno)
-//                        print(coordinate)
+                        
+                        
+                        
+                        print("coordinate")
+                        print(user)
                         userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-//                        self.mapView.removeAnnotation(annotation)
-//                        self.mapView.addAnnotation(annotation)
-
                         return true
                     }
-                    
                     return false
                 }
             }
-            
             if !userIsVisible {
                 
-                print(annotation)
-                
                 self.mapView.addAnnotation(annotation)
-                
             }
         }
-        print("user.uid")
-
     }
+    
+    func showAlert(title: String, text: String){
+        let uialert = UIAlertController(title: title, message: text , preferredStyle: UIAlertController.Style.alert)
+        uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        self.present(uialert, animated: true, completion: nil)
+        
+    }
+
 
     
     // MARK: - Helper Function
@@ -164,11 +147,11 @@ class FullMapViewController: UIViewController {
     }
     
     func configure() {
-//        navigationController?.navigationBar.isHidden = true
         configureUi()
-      //fetchUserData()
-        fetchUsers()
-    
+//        fetchUsers()
+        fetchUserLocations()
+//        print(self.infectedCount)
+
     }
     
     func configureUi() {

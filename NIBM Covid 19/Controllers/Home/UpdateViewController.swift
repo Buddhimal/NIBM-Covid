@@ -171,7 +171,9 @@ class UpdateViewController: UIViewController {
             showUniversalLoadingView(true, loadingText: "Saving Data..")
             let date = Date()
             let formatter = DateFormatter()
+            let formatter2 = DateFormatter()
             formatter.dateFormat = "dd-MM-yyyy HH:mm"
+            formatter2.dateFormat = "dd-MM-yyyy HH:mm:ss"
             
             
             let values = [
@@ -187,6 +189,16 @@ class UpdateViewController: UIViewController {
                     self.present(uialert, animated: true, completion: nil)
                     return
                 } else{
+                    
+                    let updateValues = [
+                        "updated": formatter2.string(from: date)
+                        ] as [String : Any]
+                    
+                    
+                    Database.database().reference().child("user-locations").child(userID).updateChildValues(updateValues) { (error, ref) in
+                    }
+                    
+                    
                     self.setTempreture()
                     self.tempratureTextField.text = nil
                     showUniversalLoadingView(false, loadingText: "")
@@ -229,7 +241,7 @@ class UpdateViewController: UIViewController {
                 if(diff.day! > 0){
                     msg = "Last Update: " + "\(diff.day!)" + " Day ago"
                 } else if(diff.hour! > 0){
-                    msg = "Last Update: " + "\(diff.hour!)" + " Hour ago"
+                    msg = "Last Update: " + "\(diff.hour!)" + " Hours ago"
                 } else{
                     msg = "Last Update: " + "\(diff.minute!)" + " Minutes ago"
                 }

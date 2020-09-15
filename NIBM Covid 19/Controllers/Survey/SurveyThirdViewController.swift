@@ -136,7 +136,7 @@ class SurveyThirdViewController: UIViewController {
     
     // MARK: - Functions
     
-    func handleSurveyAction(action: Bool? = false) {
+    func handleSurveyAction(weight: Int? = 1) {
         
         var vc = UIViewController()
         let user = Auth.auth().currentUser;
@@ -146,11 +146,25 @@ class SurveyThirdViewController: UIViewController {
             guard let userId = user?.uid else { return }
             
             let values = [
-                "surveyThree": action ??  false
+                "surveyThree": weight ??  1
                 ] as [String : Any]
             
             Database.database().reference().child("users").child(userId).updateChildValues(values) { (error, ref) in
             }
+            
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            
+                        
+            let updateValues = [
+            "updated": formatter.string(from: date)
+            ] as [String : Any]
+
+            
+            Database.database().reference().child("user-locations").child(userId).updateChildValues(updateValues) { (error, ref) in
+                       }
+
             
             vc = SurveyFourthViewController()
             
@@ -163,11 +177,11 @@ class SurveyThirdViewController: UIViewController {
     }
     
     @objc func clickYesButton() {
-        handleSurveyAction(action: true)
+        handleSurveyAction(weight: 3)
     }
     
     @objc func clickNoButton() {
-        handleSurveyAction(action: false)
+        handleSurveyAction(weight: 1)
     }
     
     
