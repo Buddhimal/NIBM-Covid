@@ -60,7 +60,7 @@ class FullMapViewController: UIViewController {
         configure()
         configureLocationInputActivationView()
         
-       view.backgroundColor = .white
+        view.backgroundColor = .white
     }
     
     // MARK: - Selectors
@@ -84,8 +84,8 @@ class FullMapViewController: UIViewController {
     
     func fetchUsers() {
         Service.shared.fetchAllUsers { (user) in
-//            print("Fetching users")
-//            print(user.firstName)
+            //            print("Fetching users")
+            //            print(user.firstName)
             self.infectedCount = self.infectedCount + 1
             print("count")
             print(self.infectedCount)
@@ -94,24 +94,45 @@ class FullMapViewController: UIViewController {
     }
     
     func fetchUserLocations() {
-//        let user = Auth.auth().currentUser;
-//        guard let userId = user?.uid else { return }
+        var questionWeight = 0
+        var temp = 0.0
+        //        let user = Auth.auth().currentUser;
+        //        guard let userId = user?.uid else { return }
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+            
+            questionWeight = user.questionFour + user.questionThree + user.questionTwo + user.questionOne
+            temp = Double(user.temprature)!
+            print("came...")
+            print(user)
+            print(questionWeight)
+            print(user.temprature)
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
-                    
+                     print("Miss.........")
                     if userAnno.uid == user.uid {
                         
                         
+                        if questionWeight >= 12 {
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            self.userNotificationArray.append(user.uid)
+                        } else if temp > 37.5 {
+                            print("temp..............")
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            self.userNotificationArray.append(user.uid)
+                        } else {
+                            print("Remove.........")
+                            if let index = self.userNotificationArray.firstIndex(of: user.uid) {
+                                self.userNotificationArray.remove(at: index)
+                            }
+                            self.mapView.removeAnnotation(annotation)
+                        }
+                       
                         
-                        print("coordinate")
-                        print(user)
-                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                         return true
                     }
                     return false
@@ -119,7 +140,19 @@ class FullMapViewController: UIViewController {
             }
             if !userIsVisible {
                 
-                self.mapView.addAnnotation(annotation)
+                if questionWeight >= 12 {
+                    self.mapView.addAnnotation(annotation)
+                    self.userNotificationArray.append(user.uid)
+                } else if temp > 37.5 {
+                    self.mapView.addAnnotation(annotation)
+                    self.userNotificationArray.append(user.uid)
+                } else {
+                    if let index = self.userNotificationArray.firstIndex(of: user.uid) {
+                        self.userNotificationArray.remove(at: index)
+                    }
+                    self.mapView.removeAnnotation(annotation)
+                }
+                
             }
         }
     }
@@ -130,8 +163,8 @@ class FullMapViewController: UIViewController {
         self.present(uialert, animated: true, completion: nil)
         
     }
-
-
+    
+    
     
     // MARK: - Helper Function
     
@@ -148,22 +181,22 @@ class FullMapViewController: UIViewController {
     
     func configure() {
         configureUi()
-//        fetchUsers()
+        //        fetchUsers()
         fetchUserLocations()
-//        print(self.infectedCount)
-
+        //        print(self.infectedCount)
+        
     }
     
     func configureUi() {
         confugireMapView()
-      
+        
         view.addSubview(actionButton)
         actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                             paddingTop: 16, paddingLeft: 20, width: 30, height: 30)
-
+        
         
         configureTableView()
-
+        
     }
     
     func configureLocationInputActivationView() {
@@ -287,20 +320,20 @@ extension FullMapViewController: MKMapViewDelegate {
             view.image =  #imageLiteral(resourceName: "infected_icon")
             return view
         }
-
+        
         return nil
     }
-
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        if let route = self.route {
-//            let polyline = route.polyline
-//            let lineRenderer = MKPolylineRenderer(overlay: polyline)
-//            lineRenderer.strokeColor = .mainBlueTint
-//            lineRenderer.lineWidth = 4
-//            return lineRenderer
-//        }
-//        return MKOverlayRenderer()
-//    }
+    
+    //    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    //        if let route = self.route {
+    //            let polyline = route.polyline
+    //            let lineRenderer = MKPolylineRenderer(overlay: polyline)
+    //            lineRenderer.strokeColor = .mainBlueTint
+    //            lineRenderer.lineWidth = 4
+    //            return lineRenderer
+    //        }
+    //        return MKOverlayRenderer()
+    //    }
 }
 
 // MARK: - LocationServices
@@ -325,12 +358,12 @@ extension FullMapViewController {
 }
 
 // MARK: - LocationInputActivationUIViewDelegate
- extension FullMapViewController: LocationInputActivationUIViewDelegate {
+extension FullMapViewController: LocationInputActivationUIViewDelegate {
     func presentLocationInputView() {
         inputActivationUIView.alpha = 0
         configureLocationInputView()
     }
-
+    
 }
 
 // MARK: - LocationInputViewDelegate
@@ -356,7 +389,7 @@ extension FullMapViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Search Result"
     }
-        
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -137,7 +137,7 @@ class SurveySecondViewController: UIViewController {
     
     // MARK: - Functions
     
-    func handleSurveyAction(weight: Int? = 1) {
+    func handleSurveyAction(weight: Int? = 0) {
         
         var vc = UIViewController()
         let user = Auth.auth().currentUser;
@@ -147,7 +147,7 @@ class SurveySecondViewController: UIViewController {
             guard let userId = user?.uid else { return }
             
             let values = [
-                "surveyTwo": weight ??  1
+                "surveyTwo": weight ??  0
                 ] as [String : Any]
             
             Database.database().reference().child("users").child(userId).updateChildValues(values) { (error, ref) in
@@ -182,7 +182,7 @@ class SurveySecondViewController: UIViewController {
     }
     
     @objc func clickNoButton() {
-        handleSurveyAction(weight: 1)
+        handleSurveyAction(weight: 0)
     }
     
     
