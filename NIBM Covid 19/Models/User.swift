@@ -25,17 +25,23 @@ struct User {
     let questionThree: Int
     let questionFour: Int
     let temprature: String
+    let profileImageUrl: String
+    let country: String
+    let indexNo: String
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.firstName = dictionary["firstName"] as? String ?? ""
-        self.lastName = dictionary["firstName"] as? String ?? ""
+        self.lastName = dictionary["lastName"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
         self.questionOne = dictionary["surveyOne"] as? Int ?? 0
         self.questionTwo = dictionary["surveyTwo"] as? Int ?? 0
         self.questionThree = dictionary["surveyThree"] as? Int ?? 0
         self.questionFour = dictionary["surveyFour"] as? Int ?? 0
         self.temprature = dictionary["bodyTemperature"] as? String ?? "0.0"
+        self.profileImageUrl = dictionary["image"] as? String ?? ""
+        self.country = dictionary["country"] as? String ?? ""
+        self.indexNo = dictionary["indexNo"] as? String ?? ""
         
         if let index = dictionary["role"] as? Int {
             self.role = AccountType(rawValue: index)

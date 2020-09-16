@@ -22,6 +22,10 @@ let REF_TRIPS = DB_REF.child("trips")
 struct Service {
     static let shared = Service()
     private let locationManager = LocationHandler.shared.locationManager
+    let loginUserId = Auth.auth().currentUser?.uid
+    
+    
+
     
     func fetchUserData(uid: String, completion: @escaping(User) -> Void) {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
@@ -111,6 +115,16 @@ struct Service {
     //        }
     //    }
     
+    
+    
+    func updateUserWithImage(imageUrl: String, username: String, indexNo:String, country: String){
+        
+//        let user = Auth.auth().currentUser;
+        
+//        guard let userId = user?.uid else { return }
+        
+           return REF_USERS.child(loginUserId!).updateChildValues(["image":imageUrl, "firstName":username,"indexNo":indexNo,"country":country])
+       }
     
     
 }

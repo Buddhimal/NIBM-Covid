@@ -37,7 +37,6 @@ class CreateNotificationViewController: UIViewController {
         textField.placeholder = "Enter Title"
         //        textField.textAlignment = .center
         textField.backgroundColor = .backgroundColor
-        //        textField.frame = CGRect(x: 10, y: 10, width: 120, height: 50)
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -139,7 +138,7 @@ class CreateNotificationViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd,yyyy"
         
-        if(title == nil || text == "" ){
+        if(title == "" || text == "" ){
             
             self.showAlert(title: "Error", text: "Please enter Title message")
             
