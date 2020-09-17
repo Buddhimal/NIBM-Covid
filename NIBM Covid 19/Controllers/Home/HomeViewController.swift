@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         title = "Home"
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
+        self.showToast(message: "Your Toast Message", font: .systemFont(ofSize: 12.0))
         
         //        configureNavigationBar()
         AccessLocationServices()

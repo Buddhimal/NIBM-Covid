@@ -228,6 +228,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             DispatchQueue.main.async() { [weak self] in
                 self?.profileImageView.image = UIImage(data: data)
                 self?.profileImageView.layer.cornerRadius = 50
+                self?.profileImageView.clipsToBounds = true
             }
         }
     }

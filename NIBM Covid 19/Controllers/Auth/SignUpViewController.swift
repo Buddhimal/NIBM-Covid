@@ -26,26 +26,26 @@ class SignUpViewController: UIViewController {
     }()
     
     private lazy var emailContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "email"), textField: emailTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private lazy var firstNameContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: firstNameTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "name"), textField: firstNameTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     
     private lazy var lastNameContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: lastNameTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "name"), textField: lastNameTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private let accountTypeSegmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Student", "Staff"])
+        let sc = UISegmentedControl(items: ["Student", "Staff","Non – Academic"])
         sc.backgroundColor = UIColor.rgb(red: 156, green: 68, blue: 109)
         sc.tintColor = UIColor(white: 1, alpha: 0.87)
         sc.selectedSegmentIndex = 0
@@ -55,7 +55,7 @@ class SignUpViewController: UIViewController {
     
     
     private lazy var passwordContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "password"), textField: passwordTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
@@ -108,7 +108,8 @@ class SignUpViewController: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.backgroundColor = UIColor.rgb(red: 161, green: 111, blue: 134)
+        button.backgroundColor = UIColor.white
+//        button.backgroundColor = UIColor.rgb(red: 161, green: 111, blue: 134)
         button.layer.cornerRadius = 5
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)

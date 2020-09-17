@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let swipingViewController = SwipingViewController(collectionViewLayout: layout)
 //            window?.rootViewController = swipingViewController
             
-//            window?.rootViewController = UINavigationController(rootViewController: SurveyFirstViewController())
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: SignUpViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: SettingsViewController())
-            window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+//            window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
 //            window?.rootViewController = UINavigationController(rootViewController: NotificationViewController())
 //              window?.rootViewController = UINavigationController(rootViewController: FullMapViewController())
 

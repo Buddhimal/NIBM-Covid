@@ -82,7 +82,8 @@ extension UIView {
         
         let imageView = UIImageView()
         imageView.image = image
-        imageView.alpha = 0.87
+        imageView.tintColor = UIColor.black
+//        imageView.alpha = 0.87
         view.addSubview(imageView)
         imageView.centerY(inView: view)
         imageView.anchor(left: view.leftAnchor, paddingLeft: 8, width: 24, height: 24)

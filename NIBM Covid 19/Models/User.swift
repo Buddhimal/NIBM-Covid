@@ -11,6 +11,7 @@ import CoreLocation
 enum AccountType: Int {
     case student
     case teacher
+    case nonAcademic
 }
 
 struct User {

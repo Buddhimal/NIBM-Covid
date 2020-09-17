@@ -21,14 +21,26 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    private let closeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Close", for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "Close", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
+        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private lazy var emailContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "email"), textField: emailTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private lazy var passwordContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextFiled)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "password"), textField: passwordTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
@@ -57,7 +69,8 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.backgroundColor = UIColor.rgb(red: 161, green: 111, blue: 134)
+        button.backgroundColor = UIColor.white
+//        button.backgroundColor = UIColor.rgb(red: 161, green: 111, blue: 134)
         button.layer.cornerRadius = 5
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
@@ -79,18 +92,19 @@ class LoginViewController: UIViewController {
     }
 
     
-    
     // MARK: - Functions
     
     @objc func handleShowSignUp() {
-        print("Debug: call sign up")
-        
-//    showUniversalLoadingView(true, loadingText: "Downloading Data.......")
-//    showUniversalLoadingView(false, loadingText: "Downloading Data.......")
-
-
         let vc = SignUpViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func handleClose(){
+        let nav = UINavigationController(rootViewController: HomeViewController())
+        
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+
     }
     
     @objc func handleSignIn() {
@@ -178,9 +192,14 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor.backgroundColor
         
         view.addSubview(titleLabel)
+        view.addSubview(closeButton)
+        
+        closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 10).isActive = true
         
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView,LogInButton,
