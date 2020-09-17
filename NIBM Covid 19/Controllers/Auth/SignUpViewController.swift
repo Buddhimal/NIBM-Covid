@@ -25,6 +25,19 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
+    private let closeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Close", for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "Close", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
+        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    
     private lazy var emailContainerView: UIView = {
         let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "email"), textField: emailTextFiled)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -85,6 +98,16 @@ class SignUpViewController: UIViewController {
         
         return button
     }()
+    
+    
+    @objc func handleClose(){
+        let nav = UINavigationController(rootViewController: HomeViewController())
+        
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+
+    }
+
     
     let termsAndConditionsButton: UIButton = {
         let button = UIButton(type: .system)
