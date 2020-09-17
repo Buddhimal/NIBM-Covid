@@ -219,20 +219,6 @@ class SignUpViewController: UIViewController {
                 return
             }
             
-            //handle error
-            
-//            let keyWindow = UIApplication.shared.connectedScenes
-//                .filter({$0.activationState == .foregroundActive})
-//                .map({$0 as? UIWindowScene})
-//                .compactMap({$0})
-//                .first?.windows
-//                .filter({$0.isKeyWindow}).first
-            
-//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
-//            controller.configure()
-            
-//            self.dismiss(animated: true, completion: nil)
-            
             let nav = UINavigationController(rootViewController: HomeViewController())
 
             nav.modalPresentationStyle = .fullScreen
@@ -240,8 +226,6 @@ class SignUpViewController: UIViewController {
             
         }
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -256,9 +240,14 @@ class SignUpViewController: UIViewController {
         view.backgroundColor = UIColor.backgroundColor
         
         view.addSubview(titleLabel)
+        view.addSubview(closeButton)
+        
+        closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 0).isActive = true
         
         let stack = UIStackView(arrangedSubviews: [ firstNameContainerView,lastNameContainerView,emailContainerView, passwordContainerView,accountTypeSegmentedControl,signUpButton,termsAndConditionsButton,alreadyHaveAccountButton
             

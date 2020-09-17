@@ -33,6 +33,9 @@
 		5045EC9FE8811BFBF87B0A6A /* Pods_NIBM_Covid_19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */; };
 		920956E52512A98200393F60 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956E42512A98200393F60 /* alert.swift */; };
 		920956E72512AFC700393F60 /* CoronaCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956E62512AFC700393F60 /* CoronaCount.swift */; };
+		920956E92513F70A00393F60 /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956E82513F70A00393F60 /* SurveyResultViewController.swift */; };
+		920956EB2513F88700393F60 /* SurveyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956EA2513F88700393F60 /* SurveyResultCell.swift */; };
+		920956ED2513FD4700393F60 /* SurveyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956EC2513FD4700393F60 /* SurveyResult.swift */; };
 		925F2AEE250C7C2600C0DE41 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */; };
 		92D947AA250CBAE600EAD672 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947A9250CBAE600EAD672 /* Service.swift */; };
 		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
@@ -106,6 +109,9 @@
 		5CB10284A9D5BBEBF6850400 /* Pods_NIBM_Covid_19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIBM_Covid_19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		920956E42512A98200393F60 /* alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.swift; sourceTree = "<group>"; };
 		920956E62512AFC700393F60 /* CoronaCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoronaCount.swift; sourceTree = "<group>"; };
+		920956E82513F70A00393F60 /* SurveyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResultViewController.swift; sourceTree = "<group>"; };
+		920956EA2513F88700393F60 /* SurveyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResultCell.swift; sourceTree = "<group>"; };
+		920956EC2513FD4700393F60 /* SurveyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResult.swift; sourceTree = "<group>"; };
 		925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		92D947A9250CBAE600EAD672 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				92D947D0250E2B4E00EAD672 /* NotificationTableViewCell.swift */,
 				92D947D6250E8FD400EAD672 /* SafeActionCell.swift */,
 				92D947E0250EBA4D00EAD672 /* LocationInputView.swift */,
+				920956EA2513F88700393F60 /* SurveyResultCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 				27EE7FFE250A8BF900446905 /* ProfileViewController.swift */,
 				27EE7FFD250A8BF800446905 /* SettingsViewController.swift */,
 				27EE8000250A8BF900446905 /* ShareViewController.swift */,
+				920956E82513F70A00393F60 /* SurveyResultViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -312,6 +320,7 @@
 				92D947C2250CDF8400EAD672 /* UserAnnotation.swift */,
 				92D947D2250E3DD300EAD672 /* Notification.swift */,
 				920956E62512AFC700393F60 /* CoronaCount.swift */,
+				920956EC2513FD4700393F60 /* SurveyResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -589,6 +598,7 @@
 				92D947E1250EBA4D00EAD672 /* LocationInputView.swift in Sources */,
 				27313CF1250805E9001BBE2A /* SignUpViewController.swift in Sources */,
 				92D947C1250CDE7A00EAD672 /* LocationInputActivationUIView.swift in Sources */,
+				920956ED2513FD4700393F60 /* SurveyResult.swift in Sources */,
 				92D947D5250E89ED00EAD672 /* SwipingViewController.swift in Sources */,
 				92D947CF250E25E500EAD672 /* NotificationViewController.swift in Sources */,
 				27313CE3250800C9001BBE2A /* AuthButtonUIButton.swift in Sources */,
@@ -598,7 +608,9 @@
 				27EE8003250A8BFA00446905 /* AboutUsViewController.swift in Sources */,
 				920956E52512A98200393F60 /* alert.swift in Sources */,
 				27EE7FF7250A8BCD00446905 /* SurveySecondViewController.swift in Sources */,
+				920956EB2513F88700393F60 /* SurveyResultCell.swift in Sources */,
 				92D947D3250E3DD300EAD672 /* Notification.swift in Sources */,
+				920956E92513F70A00393F60 /* SurveyResultViewController.swift in Sources */,
 				925F2AEE250C7C2600C0DE41 /* UpdateViewController.swift in Sources */,
 				920956E72512AFC700393F60 /* CoronaCount.swift in Sources */,
 				92D947D1250E2B4E00EAD672 /* NotificationTableViewCell.swift in Sources */,

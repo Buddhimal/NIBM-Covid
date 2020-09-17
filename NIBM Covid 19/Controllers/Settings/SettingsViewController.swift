@@ -29,6 +29,22 @@ class SettingsViewController: UIViewController {
         return button
     }()
     
+    private let SurveyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Survey Result", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 0);
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(clickSurvayButton), for: .touchUpInside)
+        
+        return button
+    }()
+
+    
     private let contactButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Contact Us / About Us", for: .normal)
@@ -80,9 +96,11 @@ class SettingsViewController: UIViewController {
     
     private func setButtonControl(){
         
-        let topControlStackView = UIStackView(arrangedSubviews: [profileButton,contactButton,shareButton])
+        let topControlStackView = UIStackView(arrangedSubviews: [profileButton,contactButton,shareButton,SurveyButton])
         topControlStackView.translatesAutoresizingMaskIntoConstraints = false
         topControlStackView.axis = .vertical
+        
+//        SurveyButton.isHidden = true
         
         
         view.addSubview(topControlStackView)
@@ -120,13 +138,17 @@ class SettingsViewController: UIViewController {
         title = "Settings"
         
         checkUserLoggedIn()
-        //
-        //        view.addSubview(button)
-        //        button.setTitle("Click me", for: .normal)
-        //        button.backgroundColor = .white
-        //        button.setTitleColor(.black, for: .normal)
-        //        button.frame = CGRect(x: 100, y: 100, width: 200, height: 50)
-        //        button.addTarget(self, action: #selector(didtapButton), for: .touchUpInside)
+        
+        
+    }
+    
+    private func isAdmin(){
+        Service.shared.fetchUserData(uid: Service.shared.loginUserId!) { (User) in
+            if User.role == AccountType.student{
+                self.SurveyButton.isHidden = true
+            }
+            
+        }
     }
     
     
@@ -142,6 +164,11 @@ class SettingsViewController: UIViewController {
     
     @objc private func clickProfileButton() {
         let rootVC = ProfileViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    @objc private func clickSurvayButton() {
+        let rootVC = SurveyResultViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }
     
@@ -170,6 +197,7 @@ class SettingsViewController: UIViewController {
             }
         } else{
             setButtonControl()
+            isAdmin()
         }
     }
     

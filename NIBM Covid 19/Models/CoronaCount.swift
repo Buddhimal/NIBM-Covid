@@ -2,7 +2,7 @@
 //  CoronaCount.swift
 //  NIBM Covid 19
 //
-//  Created by TM on 9/17/20.
+//  Created by Buddhimal gunasekara on 9/17/20.
 //  Copyright © 2020 nibm. All rights reserved.
 //
 
