@@ -40,4 +40,24 @@ class NIBM_Covid_19UITests: XCTestCase {
             }
         }
     }
+    
+    func testHome(){
+        
+        
+        let app = XCUIApplication()
+        app.launch()
+        app.children(matching: .window).element(boundBy: 0).tap()
+        
+        let okayButton = app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"]
+        okayButton.tap()
+        app.buttons["See more"].tap()
+        okayButton.tap()
+        app.navigationBars["Danger Areas"].buttons["Home"].tap()
+        app.buttons["Settings"].tap()
+        app.buttons["Profile"].tap()
+        app.navigationBars["Profile"].buttons["Settings"].tap()
+        app.navigationBars["Settings"].buttons["Home"].tap()
+        
+                        
+    }
 }

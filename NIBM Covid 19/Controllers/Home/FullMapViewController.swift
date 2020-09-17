@@ -105,27 +105,25 @@ class FullMapViewController: UIViewController {
             
             questionWeight = user.questionFour + user.questionThree + user.questionTwo + user.questionOne
             temp = Double(user.temprature)!
-            print("came...")
-            print(user)
-            print(questionWeight)
-            print(user.temprature)
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
-                     print("Miss.........")
                     if userAnno.uid == user.uid {
-                        
-                        
                         if questionWeight >= 12 {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            if(!self.userNotificationArray.contains(user.uid)){
+                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                            }
+                            
                             self.userNotificationArray.append(user.uid)
                         } else if temp > 37.5 {
-                            print("temp..............")
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            if(!self.userNotificationArray.contains(user.uid)){
+                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                            }
                             self.userNotificationArray.append(user.uid)
                         } else {
-                            print("Remove.........")
                             if let index = self.userNotificationArray.firstIndex(of: user.uid) {
                                 self.userNotificationArray.remove(at: index)
                             }
@@ -142,9 +140,11 @@ class FullMapViewController: UIViewController {
                 
                 if questionWeight >= 12 {
                     self.mapView.addAnnotation(annotation)
+                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
                 } else if temp > 37.5 {
                     self.mapView.addAnnotation(annotation)
+                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
                 } else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {

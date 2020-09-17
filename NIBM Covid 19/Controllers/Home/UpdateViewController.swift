@@ -142,7 +142,6 @@ class UpdateViewController: UIViewController {
         
         return textField
         
-        //        return UITextField().textField(withPlaceholder: "Enter Your Temprature", isSecureTextEntry: false)
     }()
     
     private let updateButton: UIButton = {
@@ -153,12 +152,10 @@ class UpdateViewController: UIViewController {
         
         button.addTarget(self, action: #selector(updateTemp), for: .touchUpInside)
         
-        
         return button
     }()
     
     @objc private func updateTemp(){
-        
         
         guard let temp = tempratureTextField.text else { return }
         guard let userID = Auth.auth().currentUser?.uid else { return }
@@ -194,10 +191,8 @@ class UpdateViewController: UIViewController {
                         "updated": formatter2.string(from: date)
                         ] as [String : Any]
                     
-                    
                     Database.database().reference().child("user-locations").child(userID).updateChildValues(updateValues) { (error, ref) in
                     }
-                    
                     
                     self.setTempreture()
                     self.tempratureTextField.text = nil
