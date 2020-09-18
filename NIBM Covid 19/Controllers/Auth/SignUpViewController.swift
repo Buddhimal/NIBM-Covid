@@ -172,42 +172,95 @@ class SignUpViewController: UIViewController {
         let role = accountTypeSegmentedControl.selectedSegmentIndex
         
                 
-        
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
-                uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
-                self.present(uialert, animated: true, completion: nil)
-                return
-            }
-            
-            guard let uid = result?.user.uid else { return }
-            
-            let values = [
-                "email": email,
-                "firstName": firstName,
-                "lastName": lastName,
-                "role": role
-                ] as [String : Any]
-            
-            //            if accountType == 1 {
-            let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
-            
-            guard let location = self.location else { return }
-            
-            geoFire.setLocation(location, forKey: uid, withCompletionBlock: { (error) in
+
+        if(validateSignUp()){
+            showUniversalLoadingView(true, loadingText: "Sign In..")
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                if let error = error {
+                    let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+                    uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(uialert, animated: true, completion: nil)
+                    return
+                }
+                
+                guard let uid = result?.user.uid else { return }
+                
+                let values = [
+                    "email": email,
+                    "firstName": firstName,
+                    "lastName": lastName,
+                    "role": role
+                    ] as [String : Any]
+                
+                //            if accountType == 1 {
+                let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+                
+                guard let location = self.location else { return }
+                
+                geoFire.setLocation(location, forKey: uid, withCompletionBlock: { (error) in
+                    self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+                })
+                //            }
+                
                 self.uploadUserDataAndShowHomeController(uid: uid, values: values)
-            })
-            //            }
+                
+                //            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
+                //                print("Successfuly Registerd and save data..")
+                //            }
+            }
+            showUniversalLoadingView(false, loadingText: "Login In..")
+        }
+
+        
+    }
+    
+    func validateSignUp() -> Bool {
+        
+        let email = emailTextFiled.text
+        let password = passwordTextFiled.text
+        let firstName = firstNameTextFiled.text
+        let lastName = lastNameTextFiled.text
+        var isValid = true
+        
+        if(email == nil || email == "" ){
             
-            self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+            isValid = false;
             
-            //            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
-            //                print("Successfuly Registerd and save data..")
-            //            }
+            let uialert = UIAlertController(title: "Error", message: "Please Enter Email Address" , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+            
         }
         
+        if(password == nil || password == "" ){
+            
+            isValid = false;
+            
+            let uialert = UIAlertController(title: "Error", message: "Please Enter Password" , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+        }
+        
+        if(firstName == nil || firstName == "" ){
+            
+            isValid = false;
+            
+            let uialert = UIAlertController(title: "Error", message: "Please Enter First Name" , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+        }
+        if(lastName == nil || lastName == "" ){
+            
+            isValid = false;
+            
+            let uialert = UIAlertController(title: "Error", message: "Please Enter Last Name" , preferredStyle: UIAlertController.Style.alert)
+            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+            self.present(uialert, animated: true, completion: nil)
+        }
+        return (isValid)
+
+        
+
     }
     
     func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {

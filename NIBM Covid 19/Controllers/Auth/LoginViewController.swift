@@ -111,7 +111,9 @@ class LoginViewController: UIViewController {
         guard let email = emailTextFiled.text else { return }
         guard let password = passwordTextFiled.text else { return }
         
+        
         if(validateLogin()){
+            showUniversalLoadingView(true, loadingText: "Login In..")
             
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
@@ -144,8 +146,10 @@ class LoginViewController: UIViewController {
                 
 //                self.dismiss(animated: true, completion: nil)
                 
+                showUniversalLoadingView(false, loadingText: "Login In..")
             }
         }
+
     }
     
     
