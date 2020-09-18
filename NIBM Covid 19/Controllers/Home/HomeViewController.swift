@@ -521,7 +521,12 @@ class HomeViewController: UIViewController {
                         if questionWeight >= maxQuestionWeight {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                             if(!self.userNotificationArray.contains(user.uid)){
-                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                
+                                if(user.uid != Service.shared.loginUserId!){
+                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                }
+                                
+//                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                             }
                             self.userNotificationArray.append(user.uid)
                         } else {
@@ -537,8 +542,12 @@ class HomeViewController: UIViewController {
             }
             if !userIsVisible {
                 if questionWeight >= maxQuestionWeight {
-                    self.mapView.addAnnotation(annotation)
-                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                    if(user.uid != Service.shared.loginUserId!){
+                        self.mapView.addAnnotation(annotation)
+                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                    }
+
+//                    self.present(showMainAlert(title: "Warning2", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
                 }  else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {

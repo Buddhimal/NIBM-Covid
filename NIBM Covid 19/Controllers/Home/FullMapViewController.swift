@@ -117,7 +117,10 @@ class FullMapViewController: UIViewController {
                         if questionWeight >= maxQuestionWeight {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                             if(!self.userNotificationArray.contains(user.uid)){
-                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                
+                                if(user.uid != Service.shared.loginUserId!){
+                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                }
                             }
                             self.userNotificationArray.append(user.uid)
                         } else {
@@ -133,8 +136,12 @@ class FullMapViewController: UIViewController {
             }
             if !userIsVisible {
                 if questionWeight >= maxQuestionWeight {
-                    self.mapView.addAnnotation(annotation)
-                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                    if(user.uid != Service.shared.loginUserId!){
+                        self.mapView.addAnnotation(annotation)
+                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                    }
+
+//                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
                 }  else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {
@@ -143,6 +150,15 @@ class FullMapViewController: UIViewController {
                     self.mapView.removeAnnotation(annotation)
                 }
             }
+            
+            if self.userNotificationArray.count > 0 {
+                self.imageView.image = #imageLiteral(resourceName: "warning")
+                let attributedText = NSMutableAttributedString(string:  "Area you entered not safe to travel", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
+                attributedText.append(NSMutableAttributedString(string: "\nAll analytics are given by reported stats, \nstill unsafe to travel between cities", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
+                self.textLabel.attributedText = attributedText
+
+            }
+            
         }
     }
     
@@ -201,6 +217,28 @@ class FullMapViewController: UIViewController {
         }
     }
     
+    let textLabel: UILabel = {
+        
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        let attributedText = NSMutableAttributedString(string:  "No infected people report from this area", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
+        attributedText.append(NSMutableAttributedString(string: "\nAll analytics are given by reported stats, \nstill unsafe to travel between cities", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
+        
+        label.attributedText = attributedText
+        
+        label.attributedText = attributedText
+        
+        return label
+    }()
+        
+    let imageView: UIImageView = {
+           let imageView = UIImageView(image: #imageLiteral(resourceName: "smile") )
+           imageView.translatesAutoresizingMaskIntoConstraints = false
+           imageView.contentMode = .scaleAspectFit
+           return imageView
+       }()
+    
     func confugireMapView() {
         view.addSubview(mapView)
         mapView.frame = view.frame
@@ -208,7 +246,32 @@ class FullMapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         mapView.delegate = self
+        
+        let botomView = UIView()
+        botomView.translatesAutoresizingMaskIntoConstraints = false
+        botomView.backgroundColor = .white
+        
+        view.addSubview(botomView)
+        botomView.addSubview(textLabel)
+        botomView.addSubview(imageView)
+        
+        botomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -10).isActive = true
+        botomView.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.1).isActive = true
+        botomView.layer.cornerRadius = 10
+        botomView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
+        botomView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
+        
+        textLabel.leadingAnchor.constraint(equalTo: botomView.leadingAnchor,constant: 5).isActive = true
+        textLabel.topAnchor.constraint(equalTo: botomView.topAnchor,constant: 5).isActive = true
+        textLabel.centerYAnchor.constraint(equalTo: botomView.centerYAnchor).isActive = true
+        
+        imageView.trailingAnchor.constraint(equalTo: botomView.trailingAnchor,constant: 15).isActive = true
+        imageView.topAnchor.constraint(equalTo: botomView.topAnchor,constant: 15).isActive = true
+        imageView.heightAnchor.constraint(equalTo: botomView.heightAnchor,multiplier: 0.6).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: botomView.centerYAnchor).isActive = true
     }
+    
+    
     
     func configureLocationInputView () {
         
