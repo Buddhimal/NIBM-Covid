@@ -31,20 +31,12 @@ class HomeViewController: UIViewController {
         title = "Home"
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        self.showToast(message: "Your Toast Message", font: .systemFont(ofSize: 12.0))
+//        self.showToast(message: "Your Toast Message", font: .systemFont(ofSize: 12.0))
         
-        //        configureNavigationBar()
         AccessLocationServices()
         configureUI()
-        //        fetchUsers()
         fetchUserLocations()
         fetchCountDown()
-        
-        //        setBottomButtonControl()
-        
-        //        signout()
-        //        checkUserLoggedIn()
-        
     }
     
     
@@ -157,7 +149,6 @@ class HomeViewController: UIViewController {
         attributedText.append(NSMutableAttributedString(string: "\nStaytune with us", attributes:
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
         ImageText.attributedText = attributedText
-        //        ImageText.backgroundColor = .gray
         
         return ImageText
     }()
@@ -167,7 +158,6 @@ class HomeViewController: UIViewController {
         let ImageText = UILabel()
         ImageText.translatesAutoresizingMaskIntoConstraints = false
         ImageText.numberOfLines = 3
-        //        ImageText.backgroundColor = .gray
         let attributedText = NSMutableAttributedString(string:  "Univercity Case Updates", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
         ImageText.attributedText = attributedText
         return ImageText
@@ -176,10 +166,8 @@ class HomeViewController: UIViewController {
     private let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        //        button.setTitle("hello", for: .normal)
         button.setTitleColor(UIColor.mainBlueTint, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.backgroundColor = .red
         
         button.addTarget(self, action: #selector(clickNoticeButton), for: .touchUpInside)
         
@@ -284,10 +272,6 @@ class HomeViewController: UIViewController {
         return uiLabel
     }()
     
-    
-    
-    
-    
     //    MARK: Contfigurations
     
     func configureNavigationBar() {
@@ -315,25 +299,19 @@ class HomeViewController: UIViewController {
         let bellIconStackView = UIView()
         bellIconStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bellIconStackView)
-        //        bellIconStackView.backgroundColor = .orange
         
         bellIconStackView.addSubview(notificationImageView)
-        //        bellIconStackView.addSubview(bellIconTextView)
-        //        bellIconStackView.addSubview(nextButton)
         
         let bellTextStackView = UIView()
         bellTextStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bellTextStackView)
-        //        bellTextStackView.backgroundColor = .gray
         
-        //        bellIconStackView.addSubview(notificationImageView)
         bellTextStackView.addSubview(bellIconTextView)
         bellTextStackView.addSubview(nextButton)
         
         
         let caseUpdateStackView = UIView()
         caseUpdateStackView.translatesAutoresizingMaskIntoConstraints = false
-        //        caseUpdateStackView.backgroundColor = .gray
         view.addSubview(caseUpdateStackView)
         
         caseUpdateStackView.addSubview(caseUpdateTextView)
@@ -343,7 +321,6 @@ class HomeViewController: UIViewController {
         //corona case count down
         let infectedStackView = UIView()
         infectedStackView.translatesAutoresizingMaskIntoConstraints = false
-        //        infectedStackView.backgroundColor = .gray
         view.addSubview(infectedStackView)
         infectedStackView.addSubview(infectedImageView)
         infectedStackView.addSubview(infectedTextview)
@@ -386,14 +363,12 @@ class HomeViewController: UIViewController {
             
             bellIconStackView.topAnchor.constraint(equalTo: stayHomeImageContainerView.bottomAnchor),
             bellIconStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            //            bellIconStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bellIconStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
             bellIconStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.2),
             
             
             bellTextStackView.topAnchor.constraint(equalTo: stayHomeImageContainerView.bottomAnchor),
             bellTextStackView.leadingAnchor.constraint(equalTo: bellIconStackView.trailingAnchor, constant: 10),
-            //            bellTextStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bellTextStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
             bellTextStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
             
@@ -416,7 +391,6 @@ class HomeViewController: UIViewController {
             caseUpdateStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             caseUpdateStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             caseUpdateStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.05),
-            //            caseUpdateStackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: 20),
             
             seeMoreButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25 ),
             seeMoreButton.centerYAnchor.constraint(equalTo: caseUpdateStackView.centerYAnchor),
@@ -431,11 +405,8 @@ class HomeViewController: UIViewController {
         let coundDownControlStackView = UIStackView(arrangedSubviews: [infectedStackView,deathsStackView,recoveredStackView])
         coundDownControlStackView.translatesAutoresizingMaskIntoConstraints = false
         coundDownControlStackView.distribution = .fillEqually
-        //        coundDownControlStackView.backgroundColor = .orange
-        
         
         view.addSubview(coundDownControlStackView)
-        
         
         NSLayoutConstraint.activate([
             coundDownControlStackView.topAnchor.constraint(equalTo: caseUpdateStackView.bottomAnchor),
@@ -519,7 +490,6 @@ class HomeViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: mapStackView.bottomAnchor, constant: -10),
             mapView.trailingAnchor.constraint(equalTo: mapStackView.trailingAnchor),
             mapView.leadingAnchor.constraint(equalTo: mapStackView.leadingAnchor),
-            //            mapView.bottomAnchor.constraint(equalTo: bottomControlStackView.topAnchor, constant: -10),
             
         ])
         
@@ -530,8 +500,7 @@ class HomeViewController: UIViewController {
     func fetchUserLocations() {
         var questionWeight = 0
         var temp = 0.0
-        //        let user = Auth.auth().currentUser;
-        //        guard let userId = user?.uid else { return }
+        let maxQuestionWeight = 15
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
@@ -539,19 +508,17 @@ class HomeViewController: UIViewController {
             
             questionWeight = user.questionFour + user.questionThree + user.questionTwo + user.questionOne
             temp = Double(user.temprature)!
+            
+            if temp > 37.5{
+                questionWeight = questionWeight + 10
+            }
+            
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     if userAnno.uid == user.uid {
-                        if questionWeight >= 12 {
-                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-                            if(!self.userNotificationArray.contains(user.uid)){
-                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
-                            }
-                            
-                            self.userNotificationArray.append(user.uid)
-                        } else if temp > 37.5 {
+                        if questionWeight >= maxQuestionWeight {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                             if(!self.userNotificationArray.contains(user.uid)){
                                 self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
@@ -563,33 +530,27 @@ class HomeViewController: UIViewController {
                             }
                             self.mapView.removeAnnotation(annotation)
                         }
-                        
-                        
                         return true
                     }
                     return false
                 }
             }
             if !userIsVisible {
-                
-                if questionWeight >= 12 {
+                if questionWeight >= maxQuestionWeight {
                     self.mapView.addAnnotation(annotation)
                     self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
-                } else if temp > 37.5 {
-                    self.mapView.addAnnotation(annotation)
-                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
-                    self.userNotificationArray.append(user.uid)
-                } else {
+                }  else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {
                         self.userNotificationArray.remove(at: index)
                     }
                     self.mapView.removeAnnotation(annotation)
                 }
-                
             }
         }
     }
+    
+    
     func fetchUsers() {
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
@@ -657,23 +618,6 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(rootVC, animated: true)
     }
     
-    
-    
-    // MARK: API
-    
-    func checkUserLoggedIn(){
-        if(Auth.auth().currentUser?.uid == nil){
-            DispatchQueue.main.async {
-                //                let nav = UINavigationController(rootViewController: LoginViewController())
-                //                nav.modalPresentationStyle = .fullScreen
-                //                self.present(nav, animated: true, completion: nil)
-            }
-        } else{
-            print ("logged in")
-        }
-    }
-    
-    
 }
 
 // MARK: - LocationServices
@@ -704,7 +648,11 @@ extension HomeViewController: MKMapViewDelegate {
             view.image =  #imageLiteral(resourceName: "infected_icon")
             return view
         }
-        
+        if let annotation = annotation as? InfectedAnnotation {
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            view.image =  #imageLiteral(resourceName: "chevron-sign-to-right")
+            return view
+        }
         return nil
     }
 }

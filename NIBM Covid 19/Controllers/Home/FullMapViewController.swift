@@ -96,8 +96,7 @@ class FullMapViewController: UIViewController {
     func fetchUserLocations() {
         var questionWeight = 0
         var temp = 0.0
-        //        let user = Auth.auth().currentUser;
-        //        guard let userId = user?.uid else { return }
+        let maxQuestionWeight = 15
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
@@ -105,19 +104,17 @@ class FullMapViewController: UIViewController {
             
             questionWeight = user.questionFour + user.questionThree + user.questionTwo + user.questionOne
             temp = Double(user.temprature)!
+            
+            if temp > 37.5{
+                questionWeight = questionWeight + 10
+            }
+            
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     if userAnno.uid == user.uid {
-                        if questionWeight >= 12 {
-                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-                            if(!self.userNotificationArray.contains(user.uid)){
-                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
-                            }
-                            
-                            self.userNotificationArray.append(user.uid)
-                        } else if temp > 37.5 {
+                        if questionWeight >= maxQuestionWeight {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                             if(!self.userNotificationArray.contains(user.uid)){
                                 self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
@@ -129,30 +126,22 @@ class FullMapViewController: UIViewController {
                             }
                             self.mapView.removeAnnotation(annotation)
                         }
-                       
-                        
                         return true
                     }
                     return false
                 }
             }
             if !userIsVisible {
-                
-                if questionWeight >= 12 {
+                if questionWeight >= maxQuestionWeight {
                     self.mapView.addAnnotation(annotation)
                     self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
-                } else if temp > 37.5 {
-                    self.mapView.addAnnotation(annotation)
-                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
-                    self.userNotificationArray.append(user.uid)
-                } else {
+                }  else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {
                         self.userNotificationArray.remove(at: index)
                     }
                     self.mapView.removeAnnotation(annotation)
                 }
-                
             }
         }
     }

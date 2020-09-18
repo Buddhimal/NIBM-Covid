@@ -74,7 +74,7 @@ class SurveyResultViewController: UIViewController {
                     q3 = "YES"
                 }
                 
-                if Int(truncating: (dict["surveyThree"] as? NSNumber ?? 0)) > 0 {
+                if Int(truncating: (dict["surveyFour"] as? NSNumber ?? 0)) > 0 {
                     q4 = "YES"
                 }
                 

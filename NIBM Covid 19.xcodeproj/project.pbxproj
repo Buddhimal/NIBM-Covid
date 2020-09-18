@@ -36,6 +36,7 @@
 		920956E92513F70A00393F60 /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956E82513F70A00393F60 /* SurveyResultViewController.swift */; };
 		920956EB2513F88700393F60 /* SurveyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956EA2513F88700393F60 /* SurveyResultCell.swift */; };
 		920956ED2513FD4700393F60 /* SurveyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956EC2513FD4700393F60 /* SurveyResult.swift */; };
+		920956EF25150E1100393F60 /* InfectedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920956EE25150E1100393F60 /* InfectedAnnotation.swift */; };
 		925F2AEE250C7C2600C0DE41 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */; };
 		92D947AA250CBAE600EAD672 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947A9250CBAE600EAD672 /* Service.swift */; };
 		92D947AD250CBBEC00EAD672 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D947AC250CBBEC00EAD672 /* User.swift */; };
@@ -112,6 +113,7 @@
 		920956E82513F70A00393F60 /* SurveyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResultViewController.swift; sourceTree = "<group>"; };
 		920956EA2513F88700393F60 /* SurveyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResultCell.swift; sourceTree = "<group>"; };
 		920956EC2513FD4700393F60 /* SurveyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResult.swift; sourceTree = "<group>"; };
+		920956EE25150E1100393F60 /* InfectedAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfectedAnnotation.swift; sourceTree = "<group>"; };
 		925F2AED250C7C2600C0DE41 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		92D947A9250CBAE600EAD672 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		92D947AC250CBBEC00EAD672 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				92D947D2250E3DD300EAD672 /* Notification.swift */,
 				920956E62512AFC700393F60 /* CoronaCount.swift */,
 				920956EC2513FD4700393F60 /* SurveyResult.swift */,
+				920956EE25150E1100393F60 /* InfectedAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920956EF25150E1100393F60 /* InfectedAnnotation.swift in Sources */,
 				92D947B7250CDE3D00EAD672 /* FullMapViewController.swift in Sources */,
 				92D947C7250D45A300EAD672 /* HomeViewController.swift in Sources */,
 				92D947C0250CDE7A00EAD672 /* LocationTableViewCell.swift in Sources */,

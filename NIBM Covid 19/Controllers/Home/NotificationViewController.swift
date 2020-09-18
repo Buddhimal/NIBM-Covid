@@ -72,12 +72,17 @@ class NotificationViewController: UIViewController {
         
         Database.database().reference().child("notifications").observe(.value, with: { (snapshot) in
             
+            self.notificationArr.removeAll()
+            
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let dict = child.value as? [String : AnyObject] ?? [:]
                 self.notificationArr.append(Notification( title: dict["title"] as! String, text: dict["text"] as! String, created: dict["created"] as! String))
 
             }
             self.setTableView()
+            self.tableView.reloadData()
+            self.showToast(message: "New Notification Received", font: .systemFont(ofSize: 12.0))
+
 
             showUniversalLoadingView(false, loadingText: "")
             

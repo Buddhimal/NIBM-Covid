@@ -14,11 +14,14 @@ import FirebaseDatabase
 
 class UpdateViewController: UIViewController {
     
+    let createNotificationView = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Update"
         view.backgroundColor = UIColor.backgroundColor
         checkUserLoggedIn()
+        
         
     }
     
@@ -256,6 +259,14 @@ class UpdateViewController: UIViewController {
         }
     }
     
+    private func isAdmin(){
+        Service.shared.fetchUserData(uid: Service.shared.loginUserId!) { (User) in
+            if User.role == AccountType.student{
+                self.createNotificationView.isHidden = true
+            }
+        }
+       }
+    
     private func configureUI(){
         
         let createView = UIView()
@@ -268,7 +279,6 @@ class UpdateViewController: UIViewController {
         
         
         
-        let createNotificationView = UIView()
         createNotificationView.translatesAutoresizingMaskIntoConstraints = false
         createNotificationView.backgroundColor = .white
         //        createNotificationView.isHidden = true
@@ -377,6 +387,7 @@ class UpdateViewController: UIViewController {
         } else{
             configureUI()
             setTempreture()
+            isAdmin()
         }
     }
     

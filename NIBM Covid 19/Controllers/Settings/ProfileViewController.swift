@@ -193,6 +193,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     
     func getUserData(){
+        
+        
+        
         showUniversalLoadingView(true, loadingText: "Fetching Data..")
         Service.shared.fetchUserData(uid: Service.shared.loginUserId!) { (User) in
             print("Logged User Id .........")

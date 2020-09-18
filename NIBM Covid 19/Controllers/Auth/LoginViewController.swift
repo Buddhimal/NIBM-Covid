@@ -121,6 +121,8 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
+                Service.shared.loginUserId = Auth.auth().currentUser?.uid
+                
                 let nav = UINavigationController(rootViewController: HomeViewController())
 
                 nav.modalPresentationStyle = .fullScreen

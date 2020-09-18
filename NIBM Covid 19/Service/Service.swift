@@ -20,9 +20,9 @@ let REF_CORONA_COUNT = DB_REF.child("corona-details")
 // MARK: - SharedService
 
 struct Service {
-    static let shared = Service()
+    static var shared = Service()
     private let locationManager = LocationHandler.shared.locationManager
-    let loginUserId = Auth.auth().currentUser?.uid
+    var loginUserId = Auth.auth().currentUser?.uid
     
     
 
