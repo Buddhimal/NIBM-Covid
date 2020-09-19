@@ -97,6 +97,7 @@ class FullMapViewController: UIViewController {
         var questionWeight = 0
         var temp = 0.0
         let maxQuestionWeight = 15
+        let CurrentUser = Auth.auth().currentUser;
         guard let location = locationManager?.location else { return }
         Service.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
@@ -136,7 +137,10 @@ class FullMapViewController: UIViewController {
             }
             if !userIsVisible {
                 if questionWeight >= maxQuestionWeight {
-                    if(user.uid != Service.shared.loginUserId!){
+                    if(CurrentUser == nil){
+                        self.mapView.addAnnotation(annotation)
+                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                    } else if(user.uid != CurrentUser?.uid){
                         self.mapView.addAnnotation(annotation)
                         self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     }

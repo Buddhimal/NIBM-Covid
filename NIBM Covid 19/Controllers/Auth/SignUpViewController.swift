@@ -184,6 +184,7 @@ class SignUpViewController: UIViewController {
                 }
                 
                 guard let uid = result?.user.uid else { return }
+                Service.shared.loginUserId = Auth.auth().currentUser?.uid
                 
                 let values = [
                     "email": email,
@@ -271,6 +272,8 @@ class SignUpViewController: UIViewController {
                 self.present(uialert, animated: true, completion: nil)
                 return
             }
+            
+            
             
             let nav = UINavigationController(rootViewController: HomeViewController())
 
