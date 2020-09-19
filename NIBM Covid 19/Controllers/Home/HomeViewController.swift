@@ -524,7 +524,8 @@ class HomeViewController: UIViewController {
                             if(!self.userNotificationArray.contains(user.uid)){
                                 
                                 if(user.uid != Service.shared.loginUserId!){
-                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+//                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                    self.showNotification()
                                 }
                                 
 //                                self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
@@ -546,13 +547,13 @@ class HomeViewController: UIViewController {
                     
                     if(CurrentUser == nil){
                         self.mapView.addAnnotation(annotation)
-                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+//                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                        self.showNotification()
                     } else if(user.uid != CurrentUser?.uid){
                         self.mapView.addAnnotation(annotation)
-                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                        self.showNotification()
+//                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     }
-
-//                    self.present(showMainAlert(title: "Warning2", text: "Infected Person found around you"),animated: true, completion: nil)
                     self.userNotificationArray.append(user.uid)
                 }  else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {
@@ -644,6 +645,26 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(rootVC, animated: true)
     }
     
+    func showNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Warning"
+        content.body =  "Corona Infected Person Found Arround You"
+        content.sound = .default
+        
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "Reminder", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            
+        }
+
+    }
+    
 }
 
 // MARK: - LocationServices
@@ -682,4 +703,16 @@ extension HomeViewController: MKMapViewDelegate {
         return nil
     }
 }
+
+extension HomeViewController: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+           willPresent notification: UNNotification,
+           withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler(.alert)
+    }
+    
+}
+
 

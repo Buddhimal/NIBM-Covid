@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 import MapKit
+import UserNotifications
 
 private let reuseIdentifier = "LocationCell"
 private let annotationIdentifier = "DriverAnnotation"
@@ -120,7 +121,8 @@ class FullMapViewController: UIViewController {
                             if(!self.userNotificationArray.contains(user.uid)){
                                 
                                 if(user.uid != Service.shared.loginUserId!){
-                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+//                                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                                    self.showNotification()
                                 }
                             }
                             self.userNotificationArray.append(user.uid)
@@ -139,10 +141,12 @@ class FullMapViewController: UIViewController {
                 if questionWeight >= maxQuestionWeight {
                     if(CurrentUser == nil){
                         self.mapView.addAnnotation(annotation)
-                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                        self.showNotification()
+//                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     } else if(user.uid != CurrentUser?.uid){
                         self.mapView.addAnnotation(annotation)
-                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
+                        self.showNotification()
+//                        self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
                     }
 
 //                    self.present(showMainAlert(title: "Warning", text: "Infected Person found around you"),animated: true, completion: nil)
@@ -161,6 +165,11 @@ class FullMapViewController: UIViewController {
                 attributedText.append(NSMutableAttributedString(string: "\nAll analytics are given by reported stats, \nstill unsafe to travel between cities", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
                 self.textLabel.attributedText = attributedText
 
+            } else{
+                self.imageView.image = #imageLiteral(resourceName: "smile")
+                let attributedText = NSMutableAttributedString(string:  "No infected people report from this area", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
+                attributedText.append(NSMutableAttributedString(string: "\nAll analytics are given by reported stats, \nstill unsafe to travel between cities", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.black ]))
+                self.textLabel.attributedText = attributedText
             }
             
         }
@@ -315,6 +324,26 @@ class FullMapViewController: UIViewController {
             self.locationInputView.removeFromSuperview()
             
         }, completion: completion)
+    }
+    
+    func showNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Warning"
+        content.body =  "Corona Infected Person Found Arround You"
+        content.sound = .default
+        
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "Reminder", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            
+        }
+
     }
 }
 
@@ -484,3 +513,16 @@ extension FullMapViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
+
+extension FullMapViewController: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+           willPresent notification: UNNotification,
+           withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler(.alert)
+    }
+    
+}
+
+
