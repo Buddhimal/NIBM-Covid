@@ -46,8 +46,8 @@ class NIBM_Covid_19UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
-        let okayButton = app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"]
-        okayButton.tap()
+//        let okayButton = app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"]
+//        okayButton.tap()
         app.buttons["Safe actions  "].tap()
         
         let nextButton = app.buttons["NEXT"]
@@ -59,15 +59,20 @@ class NIBM_Covid_19UITests: XCTestCase {
         prevButton.tap()
         prevButton.tap()
         prevButton.tap()
+        
+        nextButton.tap()
+        nextButton.tap()
+        nextButton.tap()
+
+        
+        prevButton.tap()
+        prevButton.tap()
+        prevButton.tap()
+        
         app.navigationBars["Safe Actions"].buttons["Home"].tap()
         app.buttons["Forward"].tap()
         app.navigationBars["All News"].buttons["Home"].tap()
         app.buttons["See more"].tap()
-        okayButton.tap()
-        app.navigationBars["Danger Areas"].buttons["Home"].tap()
-        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 6).children(matching: .other).element.children(matching: .other).element.children(matching: .map).element/*@START_MENU_TOKEN@*/.press(forDuration: 1.2);/*[[".tap()",".press(forDuration: 1.2);"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-       
-        
                         
     }
     
@@ -75,8 +80,7 @@ class NIBM_Covid_19UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
-        let okayButton = app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"]
-        okayButton.tap()
+
         app.buttons["Settings"].tap()
         app.buttons["LOGOUT"].tap()
         app.textFields["Email"].tap()
@@ -139,7 +143,6 @@ class NIBM_Covid_19UITests: XCTestCase {
         let key8 = app/*@START_MENU_TOKEN@*/.keys["6"]/*[[".keyboards.keys[\"6\"]",".keys[\"6\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         key8.tap()
         app.buttons["Log In"].tap()
-        okayButton.tap()
         
     }
     
@@ -148,11 +151,9 @@ class NIBM_Covid_19UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
-        let okayButton = app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"]
-        okayButton.tap()
 
         app.buttons["Forward"].tap()
-        app.tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Hi")/*[[".cells.containing(.staticText, identifier:\"Sep 19,2020\")",".cells.containing(.staticText, identifier:\"Hi\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.staticTexts["Hello"].swipeDown()
+//        app.tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Hi")/*[[".cells.containing(.staticText, identifier:\"Sep 19,2020\")",".cells.containing(.staticText, identifier:\"Hi\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.staticTexts["Hello"].swipeDown()
         app.navigationBars["All News"].buttons["Home"].tap()
         app.buttons["Update"].tap()
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).buttons["Forward"].tap()
@@ -166,17 +167,34 @@ class NIBM_Covid_19UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
-        app.alerts["Warning"].scrollViews.otherElements.buttons["Okay"].tap()
         app.buttons["Settings"].tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeDown()
+        element.swipeUp()
+        element.swipeUp()
+        element.swipeUp()
+        element.swipeUp()
+        element.swipeUp()
+        element.swipeDown()
+        element.swipeDown()
+        element.swipeDown()
+        element.swipeDown()
+        element.swipeDown()
+        element/*@START_MENU_TOKEN@*/.swipeLeft()/*[[".swipeUp()",".swipeLeft()"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        element.press(forDuration: 2.8);
         app.buttons["Profile"].tap()
+        
+        let indexNumberTextField = app.textFields["Index Number"]
+        indexNumberTextField.tap()
+        
+        let countryTextField = app.textFields["Country"]
+        countryTextField.tap()
+        indexNumberTextField.tap()
+        countryTextField.tap()
         app.navigationBars["Profile"].buttons["Settings"].tap()
-        app.buttons["Contact Us / About Us"].tap()
-        app.navigationBars["Contact Us / About us"].buttons["Settings"].tap()
-        app.buttons["Share With Friends"].tap()
-        app.navigationBars["Share With Friends"].buttons["Settings"].tap()
-        app.buttons["Survey Result"].tap()
-        app.navigationBars["Survey Result"].buttons["Settings"].tap()
         app.navigationBars["Settings"].buttons["Home"].tap()
+        
         
     }
     
