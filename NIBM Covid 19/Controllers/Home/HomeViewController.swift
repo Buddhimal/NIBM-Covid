@@ -601,6 +601,18 @@ class HomeViewController: UIViewController {
             
         }
     }
+    
+    func checkInfected(q1: Int, q2: Int,q3: Int, q4: Int, temp: Double) -> Bool {
+        
+        let maxWeight = 15
+        var weight = q1+q2+q3+q4
+        if temp > 37.5 {
+            weight = weight + 10
+        }
+        
+        return (weight>maxWeight)
+        
+    }
 
     
     //MARK: Functions

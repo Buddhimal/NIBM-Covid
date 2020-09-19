@@ -18,4 +18,12 @@ class NIBM_Covid_19Tests: XCTestCase {
         XCTAssertEqual(result,false)
     }
     
+    
+    func testInfected(){
+        let clz = HomeViewController()
+        let result = clz.checkInfected(q1: 5, q2: 5, q3: 5, q4: 5, temp: 5)
+        
+        XCTAssertTrue(result)
+    }
+    
 }
