@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class AboutUsViewController: UIViewController {
 
@@ -14,6 +15,17 @@ class AboutUsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Contact Us / About us"
+        
+        let keychain = KeychainSwift()
+        print("keychainLabel")
+//        keychain.accessGroup = "123ABCXYZ.iOSAppTemplates"
+        let userName = keychain.get("userName")
+        let password = keychain.get("password")
+        
+        
+        let keychainLabel = "userName = \(userName) password = \(password)"
+        print(keychainLabel)
+        
     }
     
 }

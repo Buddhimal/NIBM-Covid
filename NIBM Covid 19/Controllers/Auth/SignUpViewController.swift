@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import GeoFire
+import KeychainSwift
 
 class SignUpViewController: UIViewController {
     
@@ -182,6 +183,12 @@ class SignUpViewController: UIViewController {
                     self.present(uialert, animated: true, completion: nil)
                     return
                 }
+                
+                let keychain = KeychainSwift()
+                
+                keychain.set(email, forKey: "userName")
+                keychain.set(password, forKey: "password")
+
                 
                 guard let uid = result?.user.uid else { return }
                 Service.shared.loginUserId = Auth.auth().currentUser?.uid

@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import KeychainSwift
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
     
@@ -63,6 +65,17 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let faceIdButton: AuthButtonUIButton = {
+        let button = AuthButtonUIButton(type: .system)
+        button.setTitle("Use Face ID", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        button.addTarget(self, action: #selector(handleSignInFaceId), for: .touchUpInside)
+        
+        return button
+    }()
+
+    
     
     let needAnAccountButton: UIButton = {
         
@@ -107,6 +120,64 @@ class LoginViewController: UIViewController {
 
     }
     
+    @objc func handleSignInFaceId(){
+        print("came")
+        let context:LAContext = LAContext()
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        {
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Message") { (good, error) in
+                if good {
+                    //                    showUniversalLoadingView(true, loadingText: "Login In..")
+                    
+                    let keychain = KeychainSwift()
+                    let un = keychain.get("userName")
+                    let pw = keychain.get("password")
+                    
+                    if let userName = keychain.get("userName"),
+                        let password = keychain.get("password") {
+                        
+                        Auth.auth().signIn(withEmail: un!, password: pw!) { (result, error) in
+                            if let error = error {
+                                let uialert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: UIAlertController.Style.alert)
+                                uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                                self.present(uialert, animated: true, completion: nil)
+                                return
+                            }
+                            
+                            Service.shared.loginUserId = Auth.auth().currentUser?.uid
+                            
+                            let nav = UINavigationController(rootViewController: HomeViewController())
+                            
+                            nav.modalPresentationStyle = .fullScreen
+                            self.present(nav, animated: true, completion: nil)
+                            
+//                            showUniversalLoadingView(false, loadingText: "Login In..")
+                        }
+                        print("good")
+                        
+                        
+                    } else {
+                        DispatchQueue.main.async {
+                            let uialert = UIAlertController(title: "Error", message: "Error witth login Face ID. Please user your username and password to login." , preferredStyle: UIAlertController.Style.alert)
+                            uialert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                            self.present(uialert, animated: true, completion: nil)
+                            //                        return
+                            print("Fail")
+                        }
+                        
+                    }
+                    
+                    
+                } else {
+                    print("not Good")
+                }
+            }
+        }
+    
+    
+    }
+    
     @objc func handleSignIn() {
         guard let email = emailTextFiled.text else { return }
         guard let password = passwordTextFiled.text else { return }
@@ -124,6 +195,13 @@ class LoginViewController: UIViewController {
                 }
                 
                 Service.shared.loginUserId = Auth.auth().currentUser?.uid
+                
+                let keychain = KeychainSwift()
+                
+                keychain.set(email, forKey: "userName")
+                keychain.set(password, forKey: "password")
+                
+
                 
                 let nav = UINavigationController(rootViewController: HomeViewController())
 
@@ -187,6 +265,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let keychain = KeychainSwift()
+//        let userName = keychain.get("userName")
+//        let pw = keychain.get("password")
+//        let keychainLabel = "userName = \(userName!) password = \(pw!)"
+//        print(keychainLabel)
+
         // Do any additional setup after loading the view.
         configureUI()
     }
@@ -208,7 +292,7 @@ class LoginViewController: UIViewController {
         titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 10).isActive = true
         
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView,LogInButton,
+        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView,LogInButton,faceIdButton,
                                                    needAnAccountButton
             
         ])
